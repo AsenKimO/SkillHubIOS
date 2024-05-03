@@ -90,7 +90,7 @@
 		D41240B32BE47DE7005F55DC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D41240CD2BE4A7CB005F55DC /* HomePageControllers */,
+				D41240A32BE47C10005F55DC /* HomePageViewController.swift */,
 				D41240B82BE48171005F55DC /* ContactPageViewController.swift */,
 				D41240BA2BE48188005F55DC /* ProductPageViewController.swift */,
 				D41240BC2BE481DA005F55DC /* AddProductViewController.swift */,
@@ -118,14 +118,6 @@
 			children = (
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D41240CD2BE4A7CB005F55DC /* HomePageControllers */ = {
-			isa = PBXGroup;
-			children = (
-				D41240A32BE47C10005F55DC /* HomePageViewController.swift */,
-			);
-			path = HomePageControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
