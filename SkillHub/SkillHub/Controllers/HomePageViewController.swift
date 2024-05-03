@@ -17,8 +17,8 @@ class HomePageViewController: UIViewController {
     private var collectionView: UICollectionView!
     
     // MARK: - Properties (data)
-    private var users: [User] = []
-    private var filteredUsers: [User] = []
+    private var users: [User] = DummyData().dummyUsers
+    private var filteredUsers: [User] = DummyData().dummyUsers
     private var filters = ["All", "Popular", "Companies", "Freelance"]
     private var currFilter = 0
     
@@ -49,15 +49,23 @@ class HomePageViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .brown
         
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white]
+        appearance.backButtonAppearance = backItemAppearance
+         
+        let image = UIImage(systemName: "chevron.backward")?.withTintColor(.white, renderingMode: .alwaysOriginal) // fix indicator color
+        appearance.setBackIndicatorImage(image, transitionMaskImage: image)
+        
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
         
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(pushAddProductPage))
         let cartButton = UIBarButtonItem(image: UIImage(systemName: "bag"), style: .plain, target: self, action: #selector(placeholder))
         addButton.tintColor = .white
         cartButton.tintColor = .white
-        navigationItem.rightBarButtonItems = [addButton, cartButton]
+        navigationItem.rightBarButtonItems = [cartButton, addButton]
         
 //        navigationController?.navigationBar.prefersLargeTitles = true
 //        navigationController?.navigationBar.layoutMargins.left = 36
@@ -150,7 +158,7 @@ extension HomePageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == pillCollView { return filters.count }
-        return 9
+        return users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -164,8 +172,8 @@ extension HomePageViewController: UICollectionViewDataSource {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.reuse, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
         
-//        let user = users[indexPath.item]
-        let user = User(name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
+        let user = users[indexPath.item]
+//        let user = User(name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
         cell.configure(with: user)
         return cell
     }
@@ -181,8 +189,8 @@ extension HomePageViewController: UICollectionViewDelegate {
             self.collectionView.reloadData()
         }
         else {
-//            let user = users[indexPath.item]
-            let user = User(name: "name", title: "FA23 MOVE IN", email: "email", website: "website", image_url: "", products: [])
+            let user = users[indexPath.item]
+//            let user = User(name: "name", title: "FA23 MOVE IN", email: "email", website: "website", image_url: "", products: [])
             let productPageVC = ProductPageViewController(user: user)
             navigationController?.pushViewController(productPageVC, animated: true)
         }

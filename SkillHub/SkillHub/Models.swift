@@ -28,7 +28,7 @@ struct DummyData {
             name: "Helping Hands",
             title: "FA24 MOVE IN ASSIST",
             email: "helpinghands@.cornell.edu",
-            website: "helpinghands.org",
+            website: "https://www.helpinghands.org/",
             image_url: "https://imgur.com/ag86Gm8",
             products:[
                 Product(

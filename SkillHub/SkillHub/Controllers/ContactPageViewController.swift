@@ -12,7 +12,8 @@ import SDWebImage
 class ContactPageViewController: UIViewController {
     
     // MARK: - Properties (view)
-    private var scrollableView = UIScrollView()
+    private var scrollView = UIScrollView()
+    private var scrollContentView = UIView()
     
     private var coverImage = UIImageView()
     private var companyLabel = UILabel()
@@ -52,13 +53,27 @@ class ContactPageViewController: UIViewController {
     }
     
     private func setupScrollView(){
-        view.addSubview(scrollableView)
-
-        scrollableView.isScrollEnabled = true
-        scrollableView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        scrollView.showsVerticalScrollIndicator = false
         
-        scrollableView.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(50)
+            make.right.equalToSuperview().offset(-50)
+        }
+        scrollView.contentLayoutGuide.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        scrollView.addSubview(scrollContentView)
+        
+        scrollContentView.backgroundColor = .white
+        scrollContentView.snp.makeConstraints { make in
+//            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+//            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
+//            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
+            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
         }
     }
     
@@ -106,7 +121,7 @@ class ContactPageViewController: UIViewController {
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .black // CHANGE
         
-        scrollableView.addSubview(titleLabel)
+        scrollContentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.snp.makeConstraints { make in
@@ -120,7 +135,7 @@ class ContactPageViewController: UIViewController {
         messageTitle.font = .systemFont(ofSize: 20, weight: .light)
         messageTitle.textColor = .brown // CHANGE
         
-        scrollableView.addSubview(messageTitle)
+        scrollContentView.addSubview(messageTitle)
         
         messageTitle.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
@@ -136,7 +151,7 @@ class ContactPageViewController: UIViewController {
         messageInputTextView.layer.borderWidth = 1
         messageInputTextView.layer.borderColor = UIColor.black.cgColor
         
-        scrollableView.addSubview(messageInputTextView)
+        scrollContentView.addSubview(messageInputTextView)
         
         messageInputTextView.snp.makeConstraints { make in
             make.top.equalTo(messageTitle.snp.bottom).offset(10)
@@ -150,7 +165,7 @@ class ContactPageViewController: UIViewController {
     private func setupMessageButton() {
         messageButton.setTitle("Send Message".uppercased(), for: .normal)
         
-        scrollableView.addSubview(messageButton)
+        scrollContentView.addSubview(messageButton)
         
         messageButton.layer.cornerRadius = 5
         messageButton.backgroundColor = .black
@@ -176,7 +191,7 @@ class ContactPageViewController: UIViewController {
         contactTitle.font = .systemFont(ofSize: 18, weight: .regular)
         contactTitle.textColor = .brown // CHANGE
         
-        scrollableView.addSubview(contactTitle)
+        scrollContentView.addSubview(contactTitle)
         contactTitle.translatesAutoresizingMaskIntoConstraints = false
         
         contactTitle.snp.makeConstraints { make in
@@ -190,7 +205,7 @@ class ContactPageViewController: UIViewController {
         contactEmail.font = .systemFont(ofSize: 14, weight: .regular)
         contactEmail.textColor = .black // CHANGE
         
-        scrollableView.addSubview(contactEmail)
+        scrollContentView.addSubview(contactEmail)
         contactEmail.translatesAutoresizingMaskIntoConstraints = false
         
         contactEmail.snp.makeConstraints { make in
@@ -205,7 +220,7 @@ class ContactPageViewController: UIViewController {
         contactPhone.font = .systemFont(ofSize: 14, weight: .regular)
         contactPhone.textColor = .black // CHANGE
         
-        scrollableView.addSubview(contactPhone)
+        scrollContentView.addSubview(contactPhone)
         contactPhone.translatesAutoresizingMaskIntoConstraints = false
         
         contactPhone.snp.makeConstraints { make in
@@ -220,16 +235,5 @@ class ContactPageViewController: UIViewController {
         messageButton.backgroundColor = selected ? .black : .darkGray
         messageButton.isSelected = selected
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

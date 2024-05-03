@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import WebKit
 
 class ProductPageViewController: UIViewController {
     
@@ -18,8 +19,13 @@ class ProductPageViewController: UIViewController {
     private var websiteButton = UIButton()
     private var contactButton = UIButton()
     
-    private var scrollableView = UIScrollView()
-    private var productCollView: UICollectionView!
+    private var webView = WKWebView()
+    private var popupWebView = WKWebView()
+    
+    private var scrollView = UIScrollView()
+    private var scrollContentView = UIView()
+//    private var productCollView = UICollectionView()
+    private var productCollView = UIView()
     
     // MARK: - Properties (data)
     private let user: User
@@ -32,42 +38,21 @@ class ProductPageViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-//        view = UIScrollView()
         
         setupScrollView()
         setupCoverImage()
         setupCompanyLabel()
         setupTitleLabel()
+        setupProducts()
         setupWebButton()
         setupContactButton()
+        setupWebView()
     }
     
     // MARK: - viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // do any subview customizations AFTER autolayout
-    }
-    
-    private func setupScrollView(){
-        view.addSubview(scrollableView)
-        scrollableView.alwaysBounceVertical = true
-        
-        scrollableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
-    private func setupProducts() {
-        let layout = UICollectionViewFlowLayout()
-        productCollView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 20
-        
-        
-        view.addSubview(productCollView)
-        
-        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
-    
     }
     
     required init?(coder: NSCoder) {
@@ -79,19 +64,46 @@ class ProductPageViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    private func setupScrollView(){
+        view.addSubview(scrollView)
+        scrollView.showsVerticalScrollIndicator = false
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(36)
+            make.right.equalToSuperview().offset(-36)
+        }
+        
+        scrollView.contentLayoutGuide.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        scrollView.addSubview(scrollContentView)
+        
+        scrollContentView.backgroundColor = .white
+        scrollContentView.snp.makeConstraints { make in
+//            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+//            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
+//            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
+//            make.height.equalTo(1000)
+            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
+        }
+    }
     
     private func setupCoverImage() {
         coverImage.sd_setImage(with: URL(string: user.image_url))
-        view.addSubview(coverImage)
+        
+        scrollContentView.addSubview(coverImage)
         coverImage.backgroundColor = .brown
         
         coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
         
         coverImage.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
-            make.left.equalToSuperview().offset(36)
-            make.right.equalToSuperview().offset(-36)
+            make.top.equalTo(scrollContentView.safeAreaLayoutGuide.snp.top).offset(30)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(coverImage.snp.width)
         }
     }
@@ -102,11 +114,13 @@ class ProductPageViewController: UIViewController {
         companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
         companyLabel.textColor = .black // CHANGE
         
-        view.addSubview(companyLabel)
+        scrollContentView.addSubview(companyLabel)
         
         companyLabel.snp.makeConstraints { make in
             make.top.equalTo(coverImage.snp.bottom).offset(30) //30
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(30)
         }
         
     }
@@ -116,19 +130,44 @@ class ProductPageViewController: UIViewController {
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .black // CHANGE
         
-        view.addSubview(titleLabel)
+        scrollContentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(companyLabel.snp.bottom).offset(0)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(44)
         }
         
+    }
+    
+    private func setupProducts() {
+//        let layout = UICollectionViewFlowLayout()
+//        productCollView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 30, height: 1000), collectionViewLayout: layout)
+//        layout.scrollDirection = .vertical
+//        layout.minimumLineSpacing = 20
+//
+//        scrollContentView.addSubview(productCollView)
+//
+//        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
+        
+        productCollView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1000))
+        productCollView.backgroundColor = .red
+        
+        scrollContentView.addSubview(productCollView)
+        
+        productCollView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(55)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        }
+    
     }
     
     private func setupWebButton() {
         websiteButton.setTitle("Website".uppercased(), for: .normal)
         
-        view.addSubview(websiteButton)
+        scrollContentView.addSubview(websiteButton)
         
         websiteButton.layer.cornerRadius = 5
         websiteButton.backgroundColor = .black
@@ -136,13 +175,13 @@ class ProductPageViewController: UIViewController {
         websiteButton.setTitleColor(.white, for: .selected)
         websiteButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         
-        websiteButton.isUserInteractionEnabled = false
+        websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        
         websiteButton.clipsToBounds = true
         websiteButton.isEnabled = true
         
         websiteButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-95)
-//            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(41)
+            make.top.equalTo(productCollView.snp.bottom).offset(30)
             make.centerX.equalToSuperview()
             make.height.equalTo(44)
             make.width.equalTo(310)
@@ -153,40 +192,79 @@ class ProductPageViewController: UIViewController {
     private func setupContactButton() {
         contactButton.setTitle("Contact".uppercased(), for: .normal)
         
-        view.addSubview(contactButton)
+        scrollContentView.addSubview(contactButton)
         contactButton.layer.cornerRadius = 5
+        
+        contactButton.addTarget(self, action: #selector(pushContactVC), for: .touchUpInside)
         
         contactButton.backgroundColor = .brown
         contactButton.setTitleColor(.white, for: .normal)
         contactButton.setTitleColor(.white, for: .selected)
         contactButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         
-        contactButton.isUserInteractionEnabled = false
+        contactButton.isEnabled = true
         contactButton.clipsToBounds = true
         
         contactButton.snp.makeConstraints { make in
             make.top.equalTo(websiteButton.snp.bottom).offset(12)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(41)
+            make.centerX.equalToSuperview()
             make.height.equalTo(44)
             make.width.equalTo(310)
+            make.bottom.equalToSuperview()
         }
         
     }
     
-    func configure(filter: String, selected: Bool) {
-        websiteButton.backgroundColor = selected ? .black : .darkGray
-        websiteButton.isSelected = selected
+    
+    private func setupWebView(){
+        view.addSubview(webView)
+        
+        let preferences = WKWebpagePreferences()
+        preferences.allowsContentJavaScript = true
+
+        let configuration = WKWebViewConfiguration()
+        configuration.defaultWebpagePreferences = preferences
+
+        webView = WKWebView(frame: view.bounds, configuration: configuration)
+        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webView.allowsBackForwardNavigationGestures = true
+        
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        
+        guard let url = URL(string: user.website) else { print("Error in ProductPageViewController: Invalid URL!"); return }
+        webView.load(URLRequest(url: url))
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func openWebsite(){
+        
     }
-    */
 
+    @objc private func pushContactVC(){
+        let contactVC = ContactPageViewController(user: user)
+        navigationController?.pushViewController(contactVC, animated: true)
+    }
+
+}
+
+extension ProductPageViewController: WKNavigationDelegate{}
+
+extension ProductPageViewController: WKUIDelegate {
+    //MARK: Creating new webView for popup
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        popupWebView = WKWebView(frame: view.bounds, configuration: configuration)
+        popupWebView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        popupWebView.navigationDelegate = self
+        popupWebView.uiDelegate = self
+        view.addSubview(popupWebView)
+        return popupWebView
+    }
+    
+    //MARK: To close popup
+    func webViewDidClose(_ webView: WKWebView) {
+        if webView == popupWebView {
+            popupWebView.removeFromSuperview()
+            popupWebView = WKWebView()
+        }
+    }
 }

@@ -50,9 +50,6 @@
 		D4A444C12BE58AE3005708F5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4A444C22BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4A444C32BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
-		D4A444CB2BE58BD7005708F5 /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPageProdCollectionViewCell.swift; path = SkillHub/ViewCells/AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
-		D4A444CC2BE58BD7005708F5 /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPageBusinessCollectionViewCell.swift; path = SkillHub/ViewCells/AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
-		D4A444CD2BE58BD7005708F5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCollectionViewCell.swift; path = SkillHub/ViewCells/ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +69,6 @@
 		D41240932BE47C10005F55DC = {
 			isa = PBXGroup;
 			children = (
-				D4A444CC2BE58BD7005708F5 /* AddPageBusinessCollectionViewCell.swift */,
-				D4A444CB2BE58BD7005708F5 /* AddPageProdCollectionViewCell.swift */,
-				D4A444CD2BE58BD7005708F5 /* ProductCollectionViewCell.swift */,
 				D412409E2BE47C10005F55DC /* SkillHub */,
 				D412409D2BE47C10005F55DC /* Products */,
 				D41240DA2BE58080005F55DC /* Recovered References */,
