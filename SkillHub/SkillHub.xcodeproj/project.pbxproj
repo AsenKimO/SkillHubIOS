@@ -19,11 +19,13 @@
 		D41240BB2BE48188005F55DC /* ProductPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BA2BE48188005F55DC /* ProductPageViewController.swift */; };
 		D41240BD2BE481DA005F55DC /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BC2BE481DA005F55DC /* AddProductViewController.swift */; };
 		D41240C02BE4821B005F55DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BF2BE4821B005F55DC /* NetworkManager.swift */; };
-		D41240C32BE4824E005F55DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C22BE4824E005F55DC /* Alamofire */; };
-		D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C52BE4827F005F55DC /* SDWebImage */; };
-		D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C92BE49FDD005F55DC /* SnapKit */; };
 		D41240D12BE4B929005F55DC /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */; };
 		D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */; };
+		D41240D72BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D62BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift */; };
+		D41240D92BE576AC005F55DC /* AddPageProdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D82BE576AC005F55DC /* AddPageProdCollectionViewCell.swift */; };
+		D41240DD2BE58306005F55DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41240DC2BE58306005F55DC /* Alamofire */; };
+		D41240DF2BE5830C005F55DC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D41240DE2BE5830C005F55DC /* SDWebImage */; };
+		D41240E12BE5830C005F55DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D41240E02BE5830C005F55DC /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		D41240BF2BE4821B005F55DC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPillCollectionViewCell.swift; sourceTree = "<group>"; };
+		D41240D62BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
+		D41240D82BE576AC005F55DC /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */,
-				D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */,
-				D41240C32BE4824E005F55DC /* Alamofire in Frameworks */,
+				D41240E12BE5830C005F55DC /* SnapKit in Frameworks */,
+				D41240DF2BE5830C005F55DC /* SDWebImage in Frameworks */,
+				D41240DD2BE58306005F55DC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +68,8 @@
 			children = (
 				D412409E2BE47C10005F55DC /* SkillHub */,
 				D412409D2BE47C10005F55DC /* Products */,
+				D41240DA2BE58080005F55DC /* Recovered References */,
+				D41240DB2BE58306005F55DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,7 +115,6 @@
 			children = (
 				D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */,
 				D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */,
-				34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -129,6 +134,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D41240DA2BE58080005F55DC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D41240D82BE576AC005F55DC /* AddPageProdCollectionViewCell.swift */,
+				34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */,
+				D41240D62BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		D41240DB2BE58306005F55DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +168,9 @@
 			);
 			name = SkillHub;
 			packageProductDependencies = (
-				D41240C22BE4824E005F55DC /* Alamofire */,
-				D41240C52BE4827F005F55DC /* SDWebImage */,
-				D41240C92BE49FDD005F55DC /* SnapKit */,
+				D41240DC2BE58306005F55DC /* Alamofire */,
+				D41240DE2BE5830C005F55DC /* SDWebImage */,
+				D41240E02BE5830C005F55DC /* SnapKit */,
 			);
 			productName = SkillHub;
 			productReference = D412409C2BE47C10005F55DC /* SkillHub.app */;
@@ -210,10 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41240D92BE576AC005F55DC /* AddPageProdCollectionViewCell.swift in Sources */,
 				D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */,
 				D41240BD2BE481DA005F55DC /* AddProductViewController.swift in Sources */,
 				34C0A1152BE56A3F00A8AD6D /* ProductCollectionViewCell.swift in Sources */,
 				D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */,
+				D41240D72BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift in Sources */,
 				D41240B92BE48171005F55DC /* ContactPageViewController.swift in Sources */,
 				D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */,
 				D41240BB2BE48188005F55DC /* ProductPageViewController.swift in Sources */,
@@ -467,17 +491,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D41240C22BE4824E005F55DC /* Alamofire */ = {
+		D41240DC2BE58306005F55DC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C12BE4824E005F55DC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		D41240C52BE4827F005F55DC /* SDWebImage */ = {
+		D41240DE2BE5830C005F55DC /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C42BE4827F005F55DC /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
-		D41240C92BE49FDD005F55DC /* SnapKit */ = {
+		D41240E02BE5830C005F55DC /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C82BE49FDD005F55DC /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;

@@ -42,8 +42,7 @@ class UserCollectionViewCell: UICollectionViewCell {
         
         textViews.snp.makeConstraints { make in
             make.top.equalToSuperview().offset((2/3)*contentView.frame.height)
-            make.left.equalToSuperview().offset(contentView.frame.width/10)
-            make.right.equalToSuperview().offset(-contentView.frame.width/10)
+            make.width.equalToSuperview().multipliedBy(0.8)
             make.bottom.equalToSuperview().offset(-contentView.frame.height/10)
         }
         

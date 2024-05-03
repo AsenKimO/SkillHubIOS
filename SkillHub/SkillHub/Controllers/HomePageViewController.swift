@@ -53,17 +53,14 @@ class HomePageViewController: UIViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        let homeButton = UIBarButtonItem(title: "skillHub", style: .plain, target: self, action: #selector(placeholder))
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(placeholder))
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(pushAddProductPage))
         let cartButton = UIBarButtonItem(image: UIImage(systemName: "bag"), style: .plain, target: self, action: #selector(placeholder))
         addButton.tintColor = .white
         cartButton.tintColor = .white
-        navigationItem.leftBarButtonItem = homeButton
         navigationItem.rightBarButtonItems = [addButton, cartButton]
         
 //        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.layoutMargins.left = 36
-        navigationController?.navigationBar.layoutMargins.right = 36
+//        navigationController?.navigationBar.layoutMargins.left = 36
     }
     
     // MARK: - Collection view setup
@@ -139,7 +136,8 @@ class HomePageViewController: UIViewController {
     }
     
     @objc private func pushAddProductPage(){
-        
+        let addProdVC = AddProductViewController()
+        navigationController?.pushViewController(addProdVC, animated: true)
     }
     
     @objc private func placeholder(){}
