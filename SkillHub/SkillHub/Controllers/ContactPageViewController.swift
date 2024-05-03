@@ -53,6 +53,8 @@ class ContactPageViewController: UIViewController {
     
     private func setupScrollView(){
         view.addSubview(scrollableView)
+
+        scrollableView.isScrollEnabled = true
         scrollableView.alwaysBounceVertical = true
         
         scrollableView.snp.makeConstraints { make in
