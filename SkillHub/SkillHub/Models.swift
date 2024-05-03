@@ -60,38 +60,38 @@ struct DummyData {
             title: "CS Tutoring",
             email: "netid@cornell.edu",
             website: "https://www.cs.cornell.edu/",
-            image_url: <#T##String#>,
+            image_url: "https://imgur.com/KwEqbIg",
             products:[
                 Product(
-                    name: <#T##String#>,
-                    price: <#T##Float#>,
-                    description: <#T##String#>
+                    name: "Tutoring",
+                    price: 50,
+                    description: "We offer personalized tutoring sessions led by experienced Cornell students who excel in the field. Whether you're struggling with algorithms, debugging, or coding languages, our tutors provide one-on-one guidance tailored to your learning style and pace."
                 )]
         ),
         User(
-            name: <#T##String#>,
-            title: <#T##String#>,
-            email: <#T##String#>,
-            website: <#T##String#>,
-            image_url: <#T##String#>,
+            name: "Really Good Singer, I swear",
+            title: "I'll serenade anyone for $20",
+            email: "singer@cornell.edu",
+            website: "https://mediocremelodies.com/",
+            image_url:"https://imgur.com/KwEqbIg",
             products:[
                 Product(
-                    name: <#T##String#>,
-                    price: <#T##Float#>,
-                    description: <#T##String#>
+                    name: "Seranade",
+                    price: 20,
+                    description: "You pick the song, the person, and the location, and I will sing to them for 20 dollars!"
                 )]
         ),
         User(
-            name: <#T##String#>,
-            title: <#T##String#>,
-            email: <#T##String#>,
-            website: <#T##String#>,
-            image_url: <#T##String#>,
+            name: "Mary Doe",
+            title: "Digital Painting of your pet",
+            email: "marydoesart@gmail.com",
+            website: "marydoesart.com",
+            image_url:"https://imgur.com/KwEqbIg",
             products:[
                 Product(
-                    name: <#T##String#>,
-                    price: <#T##Float#>,
-                    description: <#T##String#>
+                    name: "Pet Painting",
+                    price: 100,
+                    description: "As a fellow college student and passionate artist, I can bring your pet's unique personality to life through vibrant colors and intricate details. Simply provide a photo of your pet, and I will create a one-of-a-kind digital painting that you can cherish forever. Perfect for dorm room decor, gifts for pet-loving friends, or a special keepsake of your four-legged companion."
                 )]
         )]
 }
