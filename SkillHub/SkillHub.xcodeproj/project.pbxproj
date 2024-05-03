@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3490A9292BE4C5EF003637FE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3490A9282BE4C5EF003637FE /* SDWebImageMapKit */; };
 		D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412409F2BE47C10005F55DC /* AppDelegate.swift */; };
 		D41240A22BE47C10005F55DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A12BE47C10005F55DC /* SceneDelegate.swift */; };
 		D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A32BE47C10005F55DC /* HomePageViewController.swift */; };
@@ -46,6 +47,7 @@
 			files = (
 				D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */,
 				D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */,
+				3490A9292BE4C5EF003637FE /* SDWebImageMapKit in Frameworks */,
 				D41240C32BE4824E005F55DC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +142,7 @@
 				D41240C22BE4824E005F55DC /* Alamofire */,
 				D41240C52BE4827F005F55DC /* SDWebImage */,
 				D41240C92BE49FDD005F55DC /* SnapKit */,
+				3490A9282BE4C5EF003637FE /* SDWebImageMapKit */,
 			);
 			productName = SkillHub;
 			productReference = D412409C2BE47C10005F55DC /* SkillHub.app */;
@@ -453,6 +456,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3490A9282BE4C5EF003637FE /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D41240C42BE4827F005F55DC /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
 		D41240C22BE4824E005F55DC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C12BE4824E005F55DC /* XCRemoteSwiftPackageReference "Alamofire" */;
