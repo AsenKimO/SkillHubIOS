@@ -20,6 +20,7 @@
 		D41240C02BE4821B005F55DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BF2BE4821B005F55DC /* NetworkManager.swift */; };
 		D41240C32BE4824E005F55DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C22BE4824E005F55DC /* Alamofire */; };
 		D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C52BE4827F005F55DC /* SDWebImage */; };
+		D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C92BE49FDD005F55DC /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */,
 				D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */,
 				D41240C32BE4824E005F55DC /* Alamofire in Frameworks */,
 			);
@@ -137,6 +139,7 @@
 			packageProductDependencies = (
 				D41240C22BE4824E005F55DC /* Alamofire */,
 				D41240C52BE4827F005F55DC /* SDWebImage */,
+				D41240C92BE49FDD005F55DC /* SnapKit */,
 			);
 			productName = SkillHub;
 			productReference = D412409C2BE47C10005F55DC /* SkillHub.app */;
@@ -169,6 +172,7 @@
 			packageReferences = (
 				D41240C12BE4824E005F55DC /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D41240C42BE4827F005F55DC /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D41240C82BE49FDD005F55DC /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = D412409D2BE47C10005F55DC /* Products */;
 			projectDirPath = "";
@@ -438,6 +442,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D41240C82BE49FDD005F55DC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +462,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C42BE4827F005F55DC /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		D41240C92BE49FDD005F55DC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D41240C82BE49FDD005F55DC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
