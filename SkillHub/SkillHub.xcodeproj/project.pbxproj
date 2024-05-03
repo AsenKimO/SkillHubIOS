@@ -22,6 +22,8 @@
 		D41240C32BE4824E005F55DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C22BE4824E005F55DC /* Alamofire */; };
 		D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C52BE4827F005F55DC /* SDWebImage */; };
 		D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D41240C92BE49FDD005F55DC /* SnapKit */; };
+		D41240D12BE4B929005F55DC /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */; };
+		D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		D41240BA2BE48188005F55DC /* ProductPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPageViewController.swift; sourceTree = "<group>"; };
 		D41240BC2BE481DA005F55DC /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		D41240BF2BE4821B005F55DC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPillCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 		D41240B42BE47DFB005F55DC /* ViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */,
+				D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -208,10 +214,12 @@
 				D41240BD2BE481DA005F55DC /* AddProductViewController.swift in Sources */,
 				D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */,
 				D41240B92BE48171005F55DC /* ContactPageViewController.swift in Sources */,
+				D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */,
 				D41240BB2BE48188005F55DC /* ProductPageViewController.swift in Sources */,
 				D41240A22BE47C10005F55DC /* SceneDelegate.swift in Sources */,
 				D41240B72BE47F1E005F55DC /* Models.swift in Sources */,
 				D41240C02BE4821B005F55DC /* NetworkManager.swift in Sources */,
+				D41240D12BE4B929005F55DC /* UserCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

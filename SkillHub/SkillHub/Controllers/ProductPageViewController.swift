@@ -84,7 +84,7 @@ class ProductPageViewController: UIViewController {
     }
     
     private func setupWebButton() {
-        websiteButton.setTitle("Website", for: <#T##UIControl.State#>)
+        websiteButton.setTitle("Website", for: .normal)
         
         view.addSubview(websiteButton)
         websiteButton.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +97,7 @@ class ProductPageViewController: UIViewController {
     }
     
     private func setupContactButton() {
-        contactButton.setTitle("Contact", for: <#T##UIControl.State#>)
+        contactButton.setTitle("Contact", for: .normal)
         
         view.addSubview(contactButton)
         contactButton.translatesAutoresizingMaskIntoConstraints = false

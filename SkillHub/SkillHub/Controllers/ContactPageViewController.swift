@@ -102,7 +102,7 @@ class ContactPageViewController: UIViewController {
     }
     
     private func setupMessageButton() {
-        messageButton.setTitle("SEND MESSAGE", for: <#T##UIControl.State#>)
+        messageButton.setTitle("SEND MESSAGE", for: .normal)
         
         view.addSubview(messageButton)
         messageButton.translatesAutoresizingMaskIntoConstraints = false
