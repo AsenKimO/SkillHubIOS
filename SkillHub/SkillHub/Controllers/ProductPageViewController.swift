@@ -44,8 +44,8 @@ class ProductPageViewController: UIViewController {
         
         coverImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
-            make.left.equalToSuperview().offset(40)
-            make.right.equalToSuperview().offset(-40)
+            make.left.equalToSuperview().offset(36)
+            make.right.equalToSuperview().offset(-36)
             make.height.equalTo(coverImage.snp.width)
         }
     }

@@ -8,6 +8,7 @@
 import UIKit
 
 class AddProductViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
