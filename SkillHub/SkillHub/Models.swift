@@ -11,3 +11,10 @@ struct User: Codable {
     let id: Int
     let name: String
 }
+
+extension User {
+    let dummyData = User(
+        id: 1,
+        name: ""
+    )
+}
