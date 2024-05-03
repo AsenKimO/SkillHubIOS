@@ -22,11 +22,11 @@ class NetworkManager {
     private let decoder = JSONDecoder()
 
     // MARK: - Requests
-    func fetchRecipes(completion: @escaping ([Recipe]) -> Void) {
+    func fetchRecipes(completion: @escaping ([User]) -> Void) {
         
         AF.request(recipeEndpoint, method: .get)
             .validate()
-            .responseDecodable(of: [Recipe].self, decoder: decoder) { response in
+            .responseDecodable(of: [User].self, decoder: decoder) { response in
                 switch response.result {
                 case .success(let recipes):
                     completion(recipes)

@@ -10,11 +10,19 @@ import Foundation
 struct User: Codable {
     let id: Int
     let name: String
+    let email: String
+    let website: String
+    let image_url: String
+    let products: [Product]
 }
 
-extension User {
-    let dummyData = User(
-        id: 1,
-        name: ""
-    )
+struct Product: Codable {
+    let id: Int
+    let name: String
+    let price: String
+    let description: String
+}
+
+struct DummyData {
+    let dummyUsers: [User] = []
 }

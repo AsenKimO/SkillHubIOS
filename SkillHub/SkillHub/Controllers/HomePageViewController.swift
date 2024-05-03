@@ -14,7 +14,7 @@ class HomePageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    private func setupFeatured
+    private func setupFeatured(){}
 
 }
 

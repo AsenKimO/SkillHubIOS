@@ -2,6 +2,6 @@
 .build/
 xcshareddata/
 xcuserdata/
-Xcuserstate/
+xcuserstate/
 ## Build generated
 build/
