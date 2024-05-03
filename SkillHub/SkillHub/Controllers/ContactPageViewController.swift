@@ -19,12 +19,17 @@ class ContactPageViewController: UIViewController {
     private var titleLabel = UILabel()
     
     private var messageTitle = UILabel()
+    private var messageInputTextView = UITextView()
     private var messageButton = UIButton()
     
     private var contactTitle = UILabel()
     private var contactEmail = UILabel()
     private var contactPhone = UILabel()
     
+    
+    // MARK: - Properties (data)
+    private let user: User
+
     // MARK: - View Cycles
     private let refreshControl = UIRefreshControl()
 
@@ -39,6 +44,7 @@ class ContactPageViewController: UIViewController {
         setupCompanyLabel()
         setupTitleLabel()
         setupMessageTitle()
+        setupMessageInput()
         setupMessageButton()
         setupContactTitle()
         setupContactEmail()
@@ -54,13 +60,23 @@ class ContactPageViewController: UIViewController {
         }
     }
     
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     private func setupCoverImage() {
-        coverImage.image = UIImage(named:"cover-move")
-        scrollableView.addSubview(coverImage)
+    
+        coverImage.sd_setImage(with: URL(string: user.image_url))
+        view.addSubview(coverImage)
+        coverImage.backgroundColor = .brown
         
-        coverImage.layer.cornerRadius = 10
+        coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
-        coverImage.translatesAutoresizingMaskIntoConstraints = false
         
         coverImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
@@ -72,20 +88,19 @@ class ContactPageViewController: UIViewController {
     }
     
     private func setupCompanyLabel() {
-        companyLabel.text = "Hired Hands"
+        companyLabel.text = user.name.lowercased()
         companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        companyLabel.textColor = .black // CHANGE
+        companyLabel.textColor = .brown // CHANGE
         
-        scrollableView.addSubview(companyLabel)
-        companyLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(companyLabel)
         
-        coverImage.snp.makeConstraints { make in
-            make.top.equalTo(coverImage.snp.bottom).offset(30)
-            make.left.equalToSuperview().offset(53)
+        companyLabel.snp.makeConstraints { make in
+            make.top.equalTo(coverImage.snp.bottom).offset(30) //30
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
         }
     }
     private func setupTitleLabel() {
-        titleLabel.text = "FA24 MOVING ASSIST"
+        titleLabel.text = user.title.uppercased()
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .black // CHANGE
         
@@ -93,57 +108,84 @@ class ContactPageViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyLabel.snp.bottom).offset(10)
+            make.top.equalTo(companyLabel.snp.bottom).offset(0)
             make.left.equalToSuperview().offset(53)
         }
     }
     
     private func setupMessageTitle() {
-        messageTitle.text = "MESSAGE US"
-        messageTitle.font = .systemFont(ofSize: 24, weight: .regular)
-        messageTitle.textColor = .black // CHANGE
+        messageTitle.text = "Message Us".uppercased()
+        messageTitle.font = .systemFont(ofSize: 20, weight: .light)
+        messageTitle.textColor = .brown // CHANGE
         
         scrollableView.addSubview(messageTitle)
-        messageTitle.translatesAutoresizingMaskIntoConstraints = false
         
         messageTitle.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.left.equalToSuperview().offset(130)
+            make.centerX.equalTo(view.center.x)
             
         }
     }
     
+    private func setupMessageInput() {
+        messageInputTextView.backgroundColor = .white
+        messageInputTextView.layer.cornerRadius = 5
+        messageInputTextView.font = .systemFont(ofSize: 16)
+        messageInputTextView.layer.borderWidth = 1
+        messageInputTextView.layer.borderColor = UIColor.black.cgColor
+        
+        scrollableView.addSubview(messageInputTextView)
+        
+        messageInputTextView.snp.makeConstraints { make in
+            make.top.equalTo(messageTitle.snp.bottom).offset(10)
+            make.centerX.equalTo(view.center.x)
+            make.height.equalTo(150)
+            make.width.equalTo(300)
+        }
+        
+    }
+    
     private func setupMessageButton() {
-        messageButton.setTitle("SEND MESSAGE", for: .normal)
+        messageButton.setTitle("Send Message".uppercased(), for: .normal)
         
         scrollableView.addSubview(messageButton)
-        messageButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        messageButton.layer.cornerRadius = 5
+        messageButton.backgroundColor = .black
+        messageButton.setTitleColor(.white, for: .normal)
+        messageButton.setTitleColor(.white, for: .selected)
+        messageButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        
+        messageButton.isUserInteractionEnabled = false
+        messageButton.clipsToBounds = true
+        messageButton.isEnabled = true
         
         messageButton.snp.makeConstraints { make in
-            make.top.equalTo(messageTitle.snp.bottom).offset(170)
-            make.left.equalToSuperview().offset(41)
+            make.top.equalTo(messageInputTextView.snp.bottom).offset(5)
+            make.centerX.equalTo(view.center.x)
+            make.height.equalTo(44)
+            make.width.equalTo(300)
         }
         
     }
     
     private func setupContactTitle() {
-        contactTitle.text = "CONTACT INFORMATION"
+        contactTitle.text = "Contact Information".uppercased()
         contactTitle.font = .systemFont(ofSize: 18, weight: .regular)
-        contactTitle.textColor = .black // CHANGE
+        contactTitle.textColor = .brown // CHANGE
         
         scrollableView.addSubview(contactTitle)
         contactTitle.translatesAutoresizingMaskIntoConstraints = false
         
         contactTitle.snp.makeConstraints { make in
             make.top.equalTo(messageButton.snp.bottom).offset(55)
-            make.left.equalToSuperview().offset(10)
-            
+            make.centerX.equalTo(view.center.x)
         }
     }
     
     private func setupContactEmail() {
-        contactEmail.text = "hired_hands@gmail.com"
-        contactEmail.font = .systemFont(ofSize: 16, weight: .regular)
+        contactEmail.text = user.email.lowercased()
+        contactEmail.font = .systemFont(ofSize: 14, weight: .regular)
         contactEmail.textColor = .black // CHANGE
         
         scrollableView.addSubview(contactEmail)
@@ -151,15 +193,14 @@ class ContactPageViewController: UIViewController {
         
         contactEmail.snp.makeConstraints { make in
             make.top.equalTo(contactTitle.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(120)
-            
+            make.centerX.equalTo(view.center.x)
         }
         
     }
     
     private func setupContactPhone() {
-        contactPhone.text = "hired_hands@gmail.com"
-        contactPhone.font = .systemFont(ofSize: 16, weight: .regular)
+        contactPhone.text = "607-xxx-xxxx"
+        contactPhone.font = .systemFont(ofSize: 14, weight: .regular)
         contactPhone.textColor = .black // CHANGE
         
         scrollableView.addSubview(contactPhone)
@@ -171,6 +212,11 @@ class ContactPageViewController: UIViewController {
             
         }
         
+    }
+    
+    func configure(filter: String, selected: Bool) {
+        messageButton.backgroundColor = selected ? .black : .darkGray
+        messageButton.isSelected = selected
     }
     
     

@@ -18,6 +18,7 @@ class ProductPageViewController: UIViewController {
     private var websiteButton = UIButton()
     private var contactButton = UIButton()
     
+    private var scrollableView = UIScrollView()
     private var productCollView: UICollectionView!
     
     // MARK: - Properties (data)
@@ -33,6 +34,7 @@ class ProductPageViewController: UIViewController {
         view.backgroundColor = .white
 //        view = UIScrollView()
         
+        setupScrollView()
         setupCoverImage()
         setupCompanyLabel()
         setupTitleLabel()
@@ -44,6 +46,15 @@ class ProductPageViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // do any subview customizations AFTER autolayout
+    }
+    
+    private func setupScrollView(){
+        view.addSubview(scrollableView)
+        scrollableView.alwaysBounceVertical = true
+        
+        scrollableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     private func setupProducts() {
@@ -108,7 +119,7 @@ class ProductPageViewController: UIViewController {
         view.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyLabel.snp.bottom).offset(10)
+            make.top.equalTo(companyLabel.snp.bottom).offset(0)
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
         }
         
