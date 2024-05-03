@@ -7,13 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34C0A1152BE56A3F00A8AD6D /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */; };
 		D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412409F2BE47C10005F55DC /* AppDelegate.swift */; };
 		D41240A22BE47C10005F55DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A12BE47C10005F55DC /* SceneDelegate.swift */; };
 		D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A32BE47C10005F55DC /* HomePageViewController.swift */; };
-		D41240A72BE47C10005F55DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41240A52BE47C10005F55DC /* Main.storyboard */; };
-		D41240A92BE47C12005F55DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41240A82BE47C12005F55DC /* Assets.xcassets */; };
-		D41240AC2BE47C12005F55DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41240AA2BE47C12005F55DC /* LaunchScreen.storyboard */; };
 		D41240B72BE47F1E005F55DC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240B62BE47F1E005F55DC /* Models.swift */; };
 		D41240B92BE48171005F55DC /* ContactPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240B82BE48171005F55DC /* ContactPageViewController.swift */; };
 		D41240BB2BE48188005F55DC /* ProductPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BA2BE48188005F55DC /* ProductPageViewController.swift */; };
@@ -21,11 +17,15 @@
 		D41240C02BE4821B005F55DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240BF2BE4821B005F55DC /* NetworkManager.swift */; };
 		D41240D12BE4B929005F55DC /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */; };
 		D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */; };
-		D41240D72BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D62BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift */; };
-		D41240D92BE576AC005F55DC /* AddPageProdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240D82BE576AC005F55DC /* AddPageProdCollectionViewCell.swift */; };
 		D41240DD2BE58306005F55DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D41240DC2BE58306005F55DC /* Alamofire */; };
 		D41240DF2BE5830C005F55DC /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D41240DE2BE5830C005F55DC /* SDWebImage */; };
 		D41240E12BE5830C005F55DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D41240E02BE5830C005F55DC /* SnapKit */; };
+		D4A444C42BE58AE3005708F5 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A444C12BE58AE3005708F5 /* ProductCollectionViewCell.swift */; };
+		D4A444C52BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A444C22BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift */; };
+		D4A444C62BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A444C32BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift */; };
+		D4A444C82BE58BB1005708F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41240A52BE47C10005F55DC /* Main.storyboard */; };
+		D4A444C92BE58BB5005708F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41240A82BE47C12005F55DC /* Assets.xcassets */; };
+		D4A444CA2BE58BB9005708F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41240AA2BE47C12005F55DC /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +47,12 @@
 		D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPillCollectionViewCell.swift; sourceTree = "<group>"; };
 		D41240D62BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
 		D41240D82BE576AC005F55DC /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444C12BE58AE3005708F5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444C22BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444C32BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444CB2BE58BD7005708F5 /* AddPageProdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPageProdCollectionViewCell.swift; path = SkillHub/ViewCells/AddPageProdCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444CC2BE58BD7005708F5 /* AddPageBusinessCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPageBusinessCollectionViewCell.swift; path = SkillHub/ViewCells/AddPageBusinessCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4A444CD2BE58BD7005708F5 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductCollectionViewCell.swift; path = SkillHub/ViewCells/ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 		D41240932BE47C10005F55DC = {
 			isa = PBXGroup;
 			children = (
+				D4A444CC2BE58BD7005708F5 /* AddPageBusinessCollectionViewCell.swift */,
+				D4A444CB2BE58BD7005708F5 /* AddPageProdCollectionViewCell.swift */,
+				D4A444CD2BE58BD7005708F5 /* ProductCollectionViewCell.swift */,
 				D412409E2BE47C10005F55DC /* SkillHub */,
 				D412409D2BE47C10005F55DC /* Products */,
 				D41240DA2BE58080005F55DC /* Recovered References */,
@@ -113,6 +122,9 @@
 		D41240B42BE47DFB005F55DC /* ViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				D4A444C32BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift */,
+				D4A444C22BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift */,
+				D4A444C12BE58AE3005708F5 /* ProductCollectionViewCell.swift */,
 				D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */,
 				D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */,
 			);
@@ -219,9 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41240AC2BE47C12005F55DC /* LaunchScreen.storyboard in Resources */,
-				D41240A92BE47C12005F55DC /* Assets.xcassets in Resources */,
-				D41240A72BE47C10005F55DC /* Main.storyboard in Resources */,
+				D4A444CA2BE58BB9005708F5 /* LaunchScreen.storyboard in Resources */,
+				D4A444C92BE58BB5005708F5 /* Assets.xcassets in Resources */,
+				D4A444C82BE58BB1005708F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,12 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41240D92BE576AC005F55DC /* AddPageProdCollectionViewCell.swift in Sources */,
+				D4A444C52BE58AE3005708F5 /* AddPageProdCollectionViewCell.swift in Sources */,
+				D4A444C62BE58AE3005708F5 /* AddPageBusinessCollectionViewCell.swift in Sources */,
+				D4A444C42BE58AE3005708F5 /* ProductCollectionViewCell.swift in Sources */,
 				D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */,
 				D41240BD2BE481DA005F55DC /* AddProductViewController.swift in Sources */,
-				34C0A1152BE56A3F00A8AD6D /* ProductCollectionViewCell.swift in Sources */,
 				D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */,
-				D41240D72BE5769E005F55DC /* AddPageBusinessCollectionViewCell.swift in Sources */,
 				D41240B92BE48171005F55DC /* ContactPageViewController.swift in Sources */,
 				D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */,
 				D41240BB2BE48188005F55DC /* ProductPageViewController.swift in Sources */,

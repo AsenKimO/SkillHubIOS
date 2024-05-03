@@ -15,7 +15,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties (data)
     //    private let product: Product
-    private var productId = 0
     static let reuse: String = "ProductCollectionViewCellReuse"
     
     // MARK: - init
@@ -28,7 +27,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with product: Product) {
-        productId = product.id
         nameLabel.text = product.name
         priceLabel.text = String(product.price)
         descriptLabel.text = product.description

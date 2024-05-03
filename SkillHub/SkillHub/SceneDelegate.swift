@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         // 3. Create a view hierarchy programmatically
-        let rootVC = ContactPageViewController(user: User(id: 0, name: "name", title: "FALL24 MOVE IN ASSIST", email: "email@cornell.edu", website: "website", image_url: "", products: []))
+        let rootVC = HomePageViewController()
         let navController = UINavigationController(rootViewController: rootVC)
 
         // 4. Set the navigation controller as the window's root view controller

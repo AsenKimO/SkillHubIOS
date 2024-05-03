@@ -165,7 +165,7 @@ extension HomePageViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.reuse, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
         
 //        let user = users[indexPath.item]
-        let user = User(id: 0, name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
+        let user = User(name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
         cell.configure(with: user)
         return cell
     }
@@ -182,7 +182,7 @@ extension HomePageViewController: UICollectionViewDelegate {
         }
         else {
 //            let user = users[indexPath.item]
-            let user = User(id: 0, name: "name", title: "FA23 MOVE IN", email: "email", website: "website", image_url: "", products: [])
+            let user = User(name: "name", title: "FA23 MOVE IN", email: "email", website: "website", image_url: "", products: [])
             let productPageVC = ProductPageViewController(user: user)
             navigationController?.pushViewController(productPageVC, animated: true)
         }
