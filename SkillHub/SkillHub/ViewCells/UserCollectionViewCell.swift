@@ -41,7 +41,7 @@ class UserCollectionViewCell: UICollectionViewCell {
         textViews.backgroundColor = .brown
         
         textViews.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(2*contentView.frame.height/3)
+            make.top.equalToSuperview().offset((2/3)*contentView.frame.height)
             make.left.equalToSuperview().offset(contentView.frame.width/10)
             make.right.equalToSuperview().offset(-contentView.frame.width/10)
             make.bottom.equalToSuperview().offset(-contentView.frame.height/10)
@@ -59,7 +59,7 @@ class UserCollectionViewCell: UICollectionViewCell {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo((2/10)*98*textViews.frame.height/100)
+            make.height.equalTo(textViews.snp.height).multipliedBy(0.3)
         }
     }
     
@@ -67,10 +67,10 @@ class UserCollectionViewCell: UICollectionViewCell {
         textViews.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(textViews.frame.height/100)
+            make.top.equalTo(nameLabel.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo((5/10)*98*textViews.frame.height/100)
+            make.height.equalTo(textViews.snp.height).multipliedBy(0.5)
         }
     }
     
@@ -78,11 +78,10 @@ class UserCollectionViewCell: UICollectionViewCell {
         textViews.addSubview(priceLabel)
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(textViews.frame.height/100)
+            make.top.equalTo(titleLabel.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo((3/10)*98*textViews.frame.height/100)
         }
     }
     
@@ -91,6 +90,9 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with user: User) {
+        nameLabel.text = user.name
+        titleLabel.text = user.title
+        priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
     }
     
     override func layoutSubviews() {

@@ -10,6 +10,7 @@ import Foundation
 struct User: Codable {
     let id: Int
     let name: String
+    let title: String
     let email: String
     let website: String
     let image_url: String
@@ -19,7 +20,7 @@ struct User: Codable {
 struct Product: Codable {
     let id: Int
     let name: String
-    let price: String
+    let price: Float
     let description: String
 }
 

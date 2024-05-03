@@ -16,23 +16,23 @@ class NetworkManager {
     private init() {  }
 
     /// Endpoint for recipes
-    private let recipeEndpoint: String = "https://api.jsonbin.io/v3/b/64d033f18e4aa6225ecbcf9f?meta=false"
+    private let usersEndpoint: String = "https://api.jsonbin.io/v3/b/64d033f18e4aa6225ecbcf9f?meta=false"
     
     /// Decoder
     private let decoder = JSONDecoder()
 
     // MARK: - Requests
-    func fetchRecipes(completion: @escaping ([User]) -> Void) {
+    func fetchUsers(completion: @escaping ([User]) -> Void) {
         
-        AF.request(recipeEndpoint, method: .get)
+        AF.request(usersEndpoint, method: .get)
             .validate()
             .responseDecodable(of: [User].self, decoder: decoder) { response in
                 switch response.result {
-                case .success(let recipes):
-                    completion(recipes)
+                case .success(let users):
+                    completion(users)
                 case .failure(let error):
                     print(error)
-                    print("Error in NetworkManager.fetchAllRecipes: \(error.localizedDescription)")
+                    print("Error in NetworkManager.fetchUsers: \(error.localizedDescription)")
                     completion([])
                 }
             }
