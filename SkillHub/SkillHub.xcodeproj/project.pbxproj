@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3490A9292BE4C5EF003637FE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3490A9282BE4C5EF003637FE /* SDWebImageMapKit */; };
+		34C0A1152BE56A3F00A8AD6D /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */; };
 		D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412409F2BE47C10005F55DC /* AppDelegate.swift */; };
 		D41240A22BE47C10005F55DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A12BE47C10005F55DC /* SceneDelegate.swift */; };
 		D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41240A32BE47C10005F55DC /* HomePageViewController.swift */; };
@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		D412409C2BE47C10005F55DC /* SkillHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D412409F2BE47C10005F55DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D41240A12BE47C10005F55DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 			files = (
 				D41240CA2BE49FDD005F55DC /* SnapKit in Frameworks */,
 				D41240C62BE4827F005F55DC /* SDWebImage in Frameworks */,
-				3490A9292BE4C5EF003637FE /* SDWebImageMapKit in Frameworks */,
 				D41240C32BE4824E005F55DC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +109,7 @@
 			children = (
 				D41240D02BE4B928005F55DC /* UserCollectionViewCell.swift */,
 				D41240D22BE4B964005F55DC /* FilterPillCollectionViewCell.swift */,
+				34C0A1142BE56A3F00A8AD6D /* ProductCollectionViewCell.swift */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -148,7 +149,6 @@
 				D41240C22BE4824E005F55DC /* Alamofire */,
 				D41240C52BE4827F005F55DC /* SDWebImage */,
 				D41240C92BE49FDD005F55DC /* SnapKit */,
-				3490A9282BE4C5EF003637FE /* SDWebImageMapKit */,
 			);
 			productName = SkillHub;
 			productReference = D412409C2BE47C10005F55DC /* SkillHub.app */;
@@ -160,7 +160,7 @@
 		D41240942BE47C10005F55DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = NO;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
@@ -212,6 +212,7 @@
 			files = (
 				D41240A42BE47C10005F55DC /* HomePageViewController.swift in Sources */,
 				D41240BD2BE481DA005F55DC /* AddProductViewController.swift in Sources */,
+				34C0A1152BE56A3F00A8AD6D /* ProductCollectionViewCell.swift in Sources */,
 				D41240A02BE47C10005F55DC /* AppDelegate.swift in Sources */,
 				D41240B92BE48171005F55DC /* ContactPageViewController.swift in Sources */,
 				D41240D32BE4B964005F55DC /* FilterPillCollectionViewCell.swift in Sources */,
@@ -373,6 +374,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,6 +402,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,11 +467,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3490A9282BE4C5EF003637FE /* SDWebImageMapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D41240C42BE4827F005F55DC /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImageMapKit;
-		};
 		D41240C22BE4824E005F55DC /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D41240C12BE4824E005F55DC /* XCRemoteSwiftPackageReference "Alamofire" */;

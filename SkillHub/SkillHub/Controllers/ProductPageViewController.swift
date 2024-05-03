@@ -18,14 +18,20 @@ class ProductPageViewController: UIViewController {
     private var websiteButton = UIButton()
     private var contactButton = UIButton()
     
+    private var productCollView: UICollectionView!
+    
+    // MARK: - Properties (data)
+    private let user: User
+    
     // MARK: - View Cycles
     private let refreshControl = UIRefreshControl()
-
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view = UIScrollView()
+//        view = UIScrollView()
         
         setupCoverImage()
         setupCompanyLabel()
@@ -34,13 +40,42 @@ class ProductPageViewController: UIViewController {
         setupContactButton()
     }
     
-    private func setupCoverImage() {
-        coverImage.image = UIImage(named:"move-cover")
-        view.addSubview(coverImage)
+    // MARK: - viewDidLayoutSubviews
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // do any subview customizations AFTER autolayout
+    }
+    
+    private func setupProducts() {
+        let layout = UICollectionViewFlowLayout()
+        productCollView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 20
         
-        coverImage.layer.cornerRadius = 5
+        
+        view.addSubview(productCollView)
+        
+        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
+    
+    }
+    
+    required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    private func setupCoverImage() {
+        coverImage.sd_setImage(with: URL(string: user.image_url))
+        view.addSubview(coverImage)
+        coverImage.backgroundColor = .brown
+        
+        coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
-        coverImage.translatesAutoresizingMaskIntoConstraints = false
         
         coverImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
@@ -52,63 +87,85 @@ class ProductPageViewController: UIViewController {
         
         
     private func setupCompanyLabel() {
-        companyLabel.text = "Hired Hands"
+        companyLabel.text = user.name.lowercased()
         companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
         companyLabel.textColor = .black // CHANGE
         
         view.addSubview(companyLabel)
-        companyLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        coverImage.snp.makeConstraints { make in
-            make.top.equalTo(coverImage.snp.bottom).offset(30)
-            make.left.equalToSuperview().offset(53)
+        companyLabel.snp.makeConstraints { make in
+            make.top.equalTo(coverImage.snp.bottom).offset(30) //30
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
         }
         
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "FA24 MOVING ASSIST"
+        titleLabel.text = user.title.uppercased()
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .black // CHANGE
         
         view.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(companyLabel.snp.bottom).offset(10)
-            make.left.equalToSuperview().offset(53)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
         }
-        
-        
         
     }
     
     private func setupWebButton() {
-        websiteButton.setTitle("Website", for: .normal)
+        websiteButton.setTitle("Website".uppercased(), for: .normal)
         
         view.addSubview(websiteButton)
-        websiteButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        websiteButton.layer.cornerRadius = 5
+        websiteButton.backgroundColor = .black
+        websiteButton.setTitleColor(.white, for: .normal)
+        websiteButton.setTitleColor(.white, for: .selected)
+        websiteButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        
+        websiteButton.isUserInteractionEnabled = false
+        websiteButton.clipsToBounds = true
+        websiteButton.isEnabled = true
         
         websiteButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(95)
-            make.left.equalToSuperview().offset(41)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-95)
+//            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(41)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(44)
+            make.width.equalTo(310)
         }
         
     }
     
     private func setupContactButton() {
-        contactButton.setTitle("Contact", for: .normal)
+        contactButton.setTitle("Contact".uppercased(), for: .normal)
         
         view.addSubview(contactButton)
-        contactButton.translatesAutoresizingMaskIntoConstraints = false
+        contactButton.layer.cornerRadius = 5
         
-        websiteButton.snp.makeConstraints { make in
+        contactButton.backgroundColor = .brown
+        contactButton.setTitleColor(.white, for: .normal)
+        contactButton.setTitleColor(.white, for: .selected)
+        contactButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        
+        contactButton.isUserInteractionEnabled = false
+        contactButton.clipsToBounds = true
+        
+        contactButton.snp.makeConstraints { make in
             make.top.equalTo(websiteButton.snp.bottom).offset(12)
-            make.left.equalToSuperview().offset(41)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(41)
+            make.height.equalTo(44)
+            make.width.equalTo(310)
         }
         
     }
     
+    func configure(filter: String, selected: Bool) {
+        websiteButton.backgroundColor = selected ? .black : .darkGray
+        websiteButton.isSelected = selected
+    }
     
 
     /*

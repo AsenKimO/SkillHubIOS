@@ -2,7 +2,7 @@
 //  ContactPageViewController.swift
 //  SkillHub
 //
-//  Created by Asen Ou on 5/2/24.
+//  Created by Nicole Lin on 5/2/24.
 //
 
 import UIKit
@@ -12,6 +12,8 @@ import SDWebImage
 class ContactPageViewController: UIViewController {
     
     // MARK: - Properties (view)
+    private var scrollableView = UIScrollView()
+    
     private var coverImage = UIImageView()
     private var companyLabel = UILabel()
     private var titleLabel = UILabel()
@@ -30,8 +32,9 @@ class ContactPageViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view = UIScrollView()
+//        view = UIScrollView()
         
+        setupScrollView()
         setupCoverImage()
         setupCompanyLabel()
         setupTitleLabel()
@@ -42,11 +45,20 @@ class ContactPageViewController: UIViewController {
         setupContactPhone()
     }
     
-    private func setupCoverImage() {
-        coverImage.image = UIImage(named:"move-cover")
-        view.addSubview(coverImage)
+    private func setupScrollView(){
+        view.addSubview(scrollableView)
+        scrollableView.alwaysBounceVertical = true
         
-        coverImage.layer.cornerRadius = 5
+        scrollableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setupCoverImage() {
+        coverImage.image = UIImage(named:"cover-move")
+        scrollableView.addSubview(coverImage)
+        
+        coverImage.layer.cornerRadius = 10
         coverImage.contentMode = .scaleAspectFill
         coverImage.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,7 +76,7 @@ class ContactPageViewController: UIViewController {
         companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
         companyLabel.textColor = .black // CHANGE
         
-        view.addSubview(companyLabel)
+        scrollableView.addSubview(companyLabel)
         companyLabel.translatesAutoresizingMaskIntoConstraints = false
         
         coverImage.snp.makeConstraints { make in
@@ -77,7 +89,7 @@ class ContactPageViewController: UIViewController {
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .black // CHANGE
         
-        view.addSubview(titleLabel)
+        scrollableView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.snp.makeConstraints { make in
@@ -91,7 +103,7 @@ class ContactPageViewController: UIViewController {
         messageTitle.font = .systemFont(ofSize: 24, weight: .regular)
         messageTitle.textColor = .black // CHANGE
         
-        view.addSubview(messageTitle)
+        scrollableView.addSubview(messageTitle)
         messageTitle.translatesAutoresizingMaskIntoConstraints = false
         
         messageTitle.snp.makeConstraints { make in
@@ -104,7 +116,7 @@ class ContactPageViewController: UIViewController {
     private func setupMessageButton() {
         messageButton.setTitle("SEND MESSAGE", for: .normal)
         
-        view.addSubview(messageButton)
+        scrollableView.addSubview(messageButton)
         messageButton.translatesAutoresizingMaskIntoConstraints = false
         
         messageButton.snp.makeConstraints { make in
@@ -119,7 +131,7 @@ class ContactPageViewController: UIViewController {
         contactTitle.font = .systemFont(ofSize: 18, weight: .regular)
         contactTitle.textColor = .black // CHANGE
         
-        view.addSubview(contactTitle)
+        scrollableView.addSubview(contactTitle)
         contactTitle.translatesAutoresizingMaskIntoConstraints = false
         
         contactTitle.snp.makeConstraints { make in
@@ -134,7 +146,7 @@ class ContactPageViewController: UIViewController {
         contactEmail.font = .systemFont(ofSize: 16, weight: .regular)
         contactEmail.textColor = .black // CHANGE
         
-        view.addSubview(contactEmail)
+        scrollableView.addSubview(contactEmail)
         contactEmail.translatesAutoresizingMaskIntoConstraints = false
         
         contactEmail.snp.makeConstraints { make in
@@ -150,7 +162,7 @@ class ContactPageViewController: UIViewController {
         contactPhone.font = .systemFont(ofSize: 16, weight: .regular)
         contactPhone.textColor = .black // CHANGE
         
-        view.addSubview(contactPhone)
+        scrollableView.addSubview(contactPhone)
         contactPhone.translatesAutoresizingMaskIntoConstraints = false
         
         contactPhone.snp.makeConstraints { make in

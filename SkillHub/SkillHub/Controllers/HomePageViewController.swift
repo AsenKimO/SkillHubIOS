@@ -184,8 +184,8 @@ extension HomePageViewController: UICollectionViewDelegate {
         }
         else {
 //            let user = users[indexPath.item]
-            let user = User(id: 0, name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
-            let productPageVC = ProductPageViewController()
+            let user = User(id: 0, name: "name", title: "FA23 MOVE IN", email: "email", website: "website", image_url: "", products: [])
+            let productPageVC = ProductPageViewController(user: user)
             navigationController?.pushViewController(productPageVC, animated: true)
         }
     }
