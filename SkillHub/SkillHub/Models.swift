@@ -60,7 +60,7 @@ struct DummyData {
             title: "CS Tutoring",
             email: "netid@cornell.edu",
             website: "https://www.cs.cornell.edu/",
-            image_url: "https://imgur.com/KwEqbIg",
+            image_url: "https://i.imgur.com/KwEqbIg.jpg",
             products:[
                 Product(
                     name: "Tutoring",
@@ -73,7 +73,7 @@ struct DummyData {
             title: "I'll serenade anyone for $20",
             email: "singer@cornell.edu",
             website: "https://mediocremelodies.com/",
-            image_url:"https://imgur.com/KwEqbIg",
+            image_url:"https://i.imgur.com/KwEqbIg.jpg",
             products:[
                 Product(
                     name: "Seranade",
@@ -86,7 +86,7 @@ struct DummyData {
             title: "Digital Painting of your pet",
             email: "marydoesart@gmail.com",
             website: "marydoesart.com",
-            image_url:"https://imgur.com/KwEqbIg",
+            image_url:"https://i.imgur.com/KwEqbIg.jpg",
             products:[
                 Product(
                     name: "Pet Painting",

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserCollectionViewCell: UICollectionViewCell {
     
@@ -89,6 +90,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with user: User) {
+        userImageView.sd_setImage(with: URL(string: user.image_url))
         nameLabel.text = user.name
         titleLabel.text = user.title
         priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
