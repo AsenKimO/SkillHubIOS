@@ -16,6 +16,10 @@ class HomePageViewController: UIViewController {
     private var pillCollView: UICollectionView!
     private var collectionView: UICollectionView!
     
+    private var cblack = UIColor(red: 43/255, green: 48/255, blue: 58/255, alpha: 1)
+    private var clbrown = UIColor(red: 232/255, green: 203/255, blue: 180/255, alpha: 1)
+    private var cpink = UIColor(red: 205/255, green: 137/255, blue: 135/255, alpha: 1)
+    
     // MARK: - Properties (data)
     private var users: [User] = DummyData().dummyUsers
     private var filteredUsers: [User] = DummyData().dummyUsers
@@ -29,7 +33,7 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
         setupNavBar()
         setupFilterPills()
         setupCollectionView()
@@ -47,7 +51,7 @@ class HomePageViewController: UIViewController {
         let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 35)!]
         appearance.titleTextAttributes = attributes
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .brown
+        appearance.backgroundColor = cpink
         
         let backItemAppearance = UIBarButtonItemAppearance()
         backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white]
@@ -84,7 +88,7 @@ class HomePageViewController: UIViewController {
         pillCollView.delegate = self
         pillCollView.dataSource = self
         
-        pillCollView.backgroundColor = .cyan
+        pillCollView.backgroundColor = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
         pillCollView.isScrollEnabled = true
         pillCollView.alwaysBounceHorizontal = true
         pillCollView.isUserInteractionEnabled = true
@@ -115,8 +119,9 @@ class HomePageViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(loadUsers), for: .valueChanged)
         collectionView.refreshControl = refreshControl
 
-        collectionView.backgroundColor = .cyan
+        collectionView.backgroundColor = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
         collectionView.isScrollEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
         
         collectionView.snp.makeConstraints { make in

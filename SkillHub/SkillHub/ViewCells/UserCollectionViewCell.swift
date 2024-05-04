@@ -17,6 +17,12 @@ class UserCollectionViewCell: UICollectionViewCell {
     private var titleLabel = UILabel()
     private var priceLabel = UILabel()
     
+    private var cblack = UIColor(red: 43/255, green: 48/255, blue: 58/255, alpha: 1)
+    private var cbrown = UIColor(red: 86/255, green: 61/255, blue: 45/255, alpha: 1)
+    private var clbrown = UIColor(red: 232/255, green: 203/255, blue: 180/255, alpha: 1)
+    private var clbrown2 = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
+    private var cpink = UIColor(red: 205/255, green: 137/255, blue: 135/255, alpha: 1)
+    
     // MARK: - Properties (data)
     static let reuse: String = "UserCollectionViewCellReuse"
     
@@ -29,6 +35,15 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupUserImg(){
         contentView.addSubview(userImageView)
+        userImageView.layer.cornerRadius = 20
+        userImageView.layer.masksToBounds = true
+        
+        let overlayView = UIView()
+            overlayView.backgroundColor = cbrown.withAlphaComponent(0.6) // Adjust alpha as needed
+            userImageView.addSubview(overlayView)
+            overlayView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         
         userImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -37,8 +52,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupTextViews(){
         contentView.addSubview(textViews)
-        
-        textViews.backgroundColor = .brown
         
         textViews.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
@@ -54,13 +67,12 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupName(){
         textViews.addSubview(nameLabel)
-        nameLabel.textColor = CGColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-        nameLabel.font = .systemFont(ofSize: 12, weight: .regular)
-        nameLabel.textColor = .black // CHANGE
+        nameLabel.font = .systemFont(ofSize: 10, weight: .semibold)
+        nameLabel.textColor = clbrown // CHANGE
         
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(85)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(textViews.snp.height).multipliedBy(0.3)
@@ -69,10 +81,12 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupTitle(){
         textViews.addSubview(titleLabel)
+        titleLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        titleLabel.textColor = clbrown // CHANGE
         
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom)
+            make.top.equalTo(nameLabel.snp.bottom).offset(0)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(textViews.snp.height).multipliedBy(0.5)
@@ -81,12 +95,12 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupPrice(){
         textViews.addSubview(priceLabel)
+        priceLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        priceLabel.textColor = clbrown2 // CHANGE
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
         }
     }
     
@@ -97,7 +111,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     func configure(with user: User) {
         userImageView.sd_setImage(with: URL(string: user.image_url))
         nameLabel.text = user.name.lowercased()
-        titleLabel.text = user.title
+        titleLabel.text = user.title.uppercased()
         priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
     }
     
