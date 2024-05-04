@@ -1,14 +1,13 @@
 //
-//  UserCollectionViewCell.swift
+//  FeatUserCollectionViewCell.swift
 //  SkillHub
 //
 //  Created by Library User on 5/3/24.
 //
 
 import UIKit
-import SDWebImage
 
-class UserCollectionViewCell: UICollectionViewCell {
+class FeatUserCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties (view)
     private var userImageView = UIImageView()
@@ -18,11 +17,12 @@ class UserCollectionViewCell: UICollectionViewCell {
     private var priceLabel = UILabel()
     
     // MARK: - Properties (data)
-    static let reuse: String = "UserCollectionViewCellReuse"
+    static let reuse: String = "FeatUserCollectionViewCellReuse"
     
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .red
         setupUserImg()
         setupTextViews()
     }
@@ -41,10 +41,10 @@ class UserCollectionViewCell: UICollectionViewCell {
         textViews.backgroundColor = .brown
         
         textViews.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalToSuperview().offset(200)
             make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-15)
+            make.bottom.equalToSuperview().offset(-30)
         }
         
         setupName()
@@ -54,10 +54,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupName(){
         textViews.addSubview(nameLabel)
-        nameLabel.textColor = CGColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-        nameLabel.font = .systemFont(ofSize: 12, weight: .regular)
-        nameLabel.textColor = .black // CHANGE
-        
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -69,7 +65,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupTitle(){
         textViews.addSubview(titleLabel)
-        
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
@@ -95,14 +90,8 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with user: User) {
-        userImageView.sd_setImage(with: URL(string: user.image_url))
-        nameLabel.text = user.name.lowercased()
+        nameLabel.text = user.name
         titleLabel.text = user.title
         priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // Update layout frames here based on cell's contentView size
     }
 }

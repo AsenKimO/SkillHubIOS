@@ -20,7 +20,8 @@ class AddProductViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .gray
         setupScrollView()
-//        setupCollView()
+        setupTitle()
+        setupCollView()
     }
     
     private func setupScrollView(){
@@ -49,6 +50,18 @@ class AddProductViewController: UIViewController {
         
     }
     
+    private func setupTitle(){
+        scrollContentView.addSubview(titleView)
+        titleView.text = "Add Business & Products"
+        titleView.font = .systemFont(ofSize: 24, weight: .regular)
+        
+        titleView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(25)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        }
+    }
+    
     private func setupCollView(){
         let layout = UICollectionViewFlowLayout()
         collView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -57,8 +70,8 @@ class AddProductViewController: UIViewController {
         
         scrollContentView.addSubview(collView)
         
-//        collView.register(AddPageBusinessCollectionViewCell.self, forCellWithReuseIdentifier: AddPageBusinessCollectionViewCell.reuse)
-//        collView.register(AddPageProdCollectionViewCell.self, forCellWithReuseIdentifier: AddPageProdCollectionViewCell.reuse)
+        collView.register(AddPageBusinessCollectionViewCell.self, forCellWithReuseIdentifier: AddPageBusinessCollectionViewCell.reuse)
+        collView.register(AddPageProdCollectionViewCell.self, forCellWithReuseIdentifier: AddPageProdCollectionViewCell.reuse)
         
         collView.delegate = self
         collView.dataSource = self
@@ -69,10 +82,10 @@ class AddProductViewController: UIViewController {
         collView.translatesAutoresizingMaskIntoConstraints = false
         
         collView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(25)
+            make.top.equalTo(titleView.snp.bottom).offset(33)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(50)
-            make.right.equalToSuperview().offset(-50)
         }
     }
 
@@ -84,7 +97,7 @@ extension AddProductViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 1 { return 10 }
+        if section == 0 { return 1 }
         return 1
     }
     
