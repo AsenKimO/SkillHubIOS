@@ -23,7 +23,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .red
         setupUserImg()
         setupTextViews()
     }
@@ -54,6 +53,10 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupName(){
         textViews.addSubview(nameLabel)
+        nameLabel.textColor = CGColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+        nameLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        nameLabel.textColor = .black // CHANGE
+        
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -65,6 +68,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupTitle(){
         textViews.addSubview(titleLabel)
+        
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
@@ -91,7 +95,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     func configure(with user: User) {
         userImageView.sd_setImage(with: URL(string: user.image_url))
-        nameLabel.text = user.name
+        nameLabel.text = user.name.lowercased()
         titleLabel.text = user.title
         priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
     }
