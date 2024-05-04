@@ -26,6 +26,12 @@ class ProductPageViewController: UIViewController {
     private var scrollContentView = UIView()
     private var productTableView: UITableView!
     
+    private var cblack = UIColor(red: 43/255, green: 48/255, blue: 58/255, alpha: 1)
+    private var cbrown = UIColor(red: 86/255, green: 61/255, blue: 45/255, alpha: 1)
+    private var cpink = UIColor(red: 205/255, green: 137/255, blue: 135/255, alpha: 1)
+    private var offWhite = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
+    private var cslate = UIColor(red: 109/255, green: 138/255, blue: 150/255, alpha: 1)
+    
     // MARK: - Properties (data)
     private let user: User
     
@@ -36,7 +42,7 @@ class ProductPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = offWhite
         
         setupScrollView()
         setupCoverImage()
@@ -63,6 +69,7 @@ class ProductPageViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    
     private func setupScrollView(){
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
@@ -80,7 +87,7 @@ class ProductPageViewController: UIViewController {
         
         scrollView.addSubview(scrollContentView)
         
-        scrollContentView.backgroundColor = .white
+        scrollContentView.backgroundColor = offWhite
         scrollContentView.snp.makeConstraints { make in
 //            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
 //            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
@@ -94,30 +101,37 @@ class ProductPageViewController: UIViewController {
         coverImage.sd_setImage(with: URL(string: user.image_url))
         
         scrollContentView.addSubview(coverImage)
-        coverImage.backgroundColor = .brown
         
         coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
         coverImage.clipsToBounds = true
         
+        let overlayView = UIView()
+            overlayView.backgroundColor = cbrown.withAlphaComponent(0.5) // Adjust alpha as needed
+            coverImage.addSubview(overlayView)
+            overlayView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        
+        
         coverImage.snp.makeConstraints { make in
             make.top.equalTo(scrollContentView.safeAreaLayoutGuide.snp.top).offset(30)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(coverImage.snp.width)
+            make.height.equalTo(coverImage.snp.width).multipliedBy(0.7)
         }
     }
         
         
     private func setupCompanyLabel() {
         companyLabel.text = user.name.lowercased()
-        companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        companyLabel.textColor = .black // CHANGE
+        companyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        companyLabel.textColor = cslate // CHANGE
         
         scrollContentView.addSubview(companyLabel)
         
         companyLabel.snp.makeConstraints { make in
-            make.top.equalTo(coverImage.snp.bottom).offset(30) //30
+            make.top.equalTo(coverImage.snp.bottom).offset(20) //30
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(30)
@@ -127,13 +141,13 @@ class ProductPageViewController: UIViewController {
     
     private func setupTitleLabel() {
         titleLabel.text = user.title.uppercased()
-        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
-        titleLabel.textColor = .black // CHANGE
+        titleLabel.font = .systemFont(ofSize: 28, weight: .heavy)
+        titleLabel.textColor = cblack // CHANGE
         
         scrollContentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyLabel.snp.bottom).offset(0)
+            make.top.equalTo(companyLabel.snp.bottom).offset(-10)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(44)
@@ -156,7 +170,7 @@ class ProductPageViewController: UIViewController {
         productTableView.isScrollEnabled = false
         
         productTableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(55)
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
 //            make.height.equalTo(CGFloat productTableView.rowHeight * user.products.count)
@@ -169,10 +183,10 @@ class ProductPageViewController: UIViewController {
         
         scrollContentView.addSubview(websiteButton)
         
-        websiteButton.layer.cornerRadius = 5
-        websiteButton.backgroundColor = .black
-        websiteButton.setTitleColor(.white, for: .normal)
-        websiteButton.setTitleColor(.white, for: .selected)
+        websiteButton.layer.cornerRadius = 8
+        websiteButton.backgroundColor = cpink
+        websiteButton.setTitleColor(offWhite, for: .normal)
+        websiteButton.setTitleColor(offWhite, for: .selected)
         websiteButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         
 //        websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
@@ -193,11 +207,11 @@ class ProductPageViewController: UIViewController {
         contactButton.setTitle("Contact".uppercased(), for: .normal)
         
         scrollContentView.addSubview(contactButton)
-        contactButton.layer.cornerRadius = 5
+        contactButton.layer.cornerRadius = 8
         
         contactButton.addTarget(self, action: #selector(pushContactVC), for: .touchUpInside)
         
-        contactButton.backgroundColor = .brown
+        contactButton.backgroundColor = .darkGray
         contactButton.setTitleColor(.white, for: .normal)
         contactButton.setTitleColor(.white, for: .selected)
         contactButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)

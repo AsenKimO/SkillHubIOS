@@ -81,7 +81,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupTitle(){
         textViews.addSubview(titleLabel)
-        titleLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 14, weight: .heavy)
         titleLabel.textColor = clbrown // CHANGE
         
         
@@ -95,7 +95,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     
     private func setupPrice(){
         textViews.addSubview(priceLabel)
-        priceLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        priceLabel.font = .systemFont(ofSize: 16, weight: .heavy)
         priceLabel.textColor = clbrown2 // CHANGE
         
         priceLabel.snp.makeConstraints { make in
@@ -112,7 +112,7 @@ class UserCollectionViewCell: UICollectionViewCell {
         userImageView.sd_setImage(with: URL(string: user.image_url))
         nameLabel.text = user.name.lowercased()
         titleLabel.text = user.title.uppercased()
-        priceLabel.text = "$" + String(describing: user.products.first?.price ?? 0.0) + "/hr"
+        priceLabel.text = "$" + String(describing: Int(user.products.first?.price ?? 0.0)) + "/hr"
     }
     
     override func layoutSubviews() {

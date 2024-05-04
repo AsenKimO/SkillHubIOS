@@ -11,6 +11,7 @@ import SnapKit
 class FilterPillCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties (view)
     var pill = UIButton()
+    private var cslate = UIColor(red: 109/255, green: 138/255, blue: 150/255, alpha: 1)
     
     // MARK: - Properties (data)
     static let reuse: String = "FilterPillCollectionViewCellReuse"
@@ -19,7 +20,6 @@ class FilterPillCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupPill()
-        contentView.backgroundColor = .white
     }
     
     private func setupPill(){
@@ -42,7 +42,7 @@ class FilterPillCollectionViewCell: UICollectionViewCell {
     func configure(filter: String, selected: Bool) {
         pill.setTitle(filter, for: .normal)
         pill.setTitle(filter, for: .selected)
-        pill.backgroundColor = selected ? .black : .darkGray
+        pill.backgroundColor = selected ? cslate : .darkGray
         pill.isSelected = selected
     }
     

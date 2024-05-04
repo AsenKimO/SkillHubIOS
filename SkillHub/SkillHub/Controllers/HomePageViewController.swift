@@ -18,7 +18,9 @@ class HomePageViewController: UIViewController {
     
     private var cblack = UIColor(red: 43/255, green: 48/255, blue: 58/255, alpha: 1)
     private var clbrown = UIColor(red: 232/255, green: 203/255, blue: 180/255, alpha: 1)
+    private var offwhite = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
     private var cpink = UIColor(red: 205/255, green: 137/255, blue: 135/255, alpha: 1)
+    
     
     // MARK: - Properties (data)
     private var users: [User] = DummyData().dummyUsers
@@ -33,7 +35,9 @@ class HomePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
+        view.backgroundColor = offwhite
+        
+        
         setupNavBar()
         setupFilterPills()
         setupCollectionView()
@@ -46,7 +50,33 @@ class HomePageViewController: UIViewController {
     }
     // MARK: - navbar setup
     private func setupNavBar(){
-        navigationItem.title = "skillHub"
+        
+        let skillString = NSAttributedString(string: "skill", attributes: [NSAttributedString.Key.foregroundColor: cblack, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 35)!])
+        let hubString = NSAttributedString(string: "Hub", attributes: [NSAttributedString.Key.foregroundColor: offwhite, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 35)!])
+        
+        
+        // Combine the attributed strings
+        let combinedString = NSMutableAttributedString()
+        combinedString.append(skillString)
+        combinedString.append(hubString)
+        
+        navigationItem.title = ""
+            navigationController?.navigationBar.topItem?.titleView = UILabel()
+            navigationController?.navigationBar.topItem?.titleView?.alpha = 0 // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView?.layer.opacity = 0 // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView?.backgroundColor = .clear // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView = UILabel()
+            navigationController?.navigationBar.topItem?.titleView?.alpha = 1 // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView?.layer.opacity = 1 // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView?.backgroundColor = .clear // Hide the default title view
+            navigationController?.navigationBar.topItem?.titleView?.tintColor = .black // Set the text color
+            navigationController?.navigationBar.topItem?.titleView?.layer.masksToBounds = true // Set the text color
+            navigationController?.navigationBar.topItem?.titleView?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Set the text color
+        
+        (navigationController?.navigationBar.topItem?.titleView as? UILabel)?.attributedText = combinedString
+            
+    
+//        navigationItem.title = "skillHub"
         let appearance = UINavigationBarAppearance()
         let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 35)!]
         appearance.titleTextAttributes = attributes
