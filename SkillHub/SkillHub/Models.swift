@@ -29,7 +29,7 @@ struct DummyData {
             title: "FA24 MOVE IN ASSIST",
             email: "helpinghands@.cornell.edu",
             website: "https://www.helpinghands.org/",
-            image_url: "https://imgur.com/ag86Gm8",
+            image_url: "https://i.imgur.com/ag86Gm8.jpeg",
             products:[
                 Product(
                     name: "Shipping",
@@ -47,7 +47,7 @@ struct DummyData {
             title: "Touchdown Appearance",
             email: "touchdownbear@cornell.edu",
             website: "https://cornell.edu/",
-            image_url: "https://imgur.com/YHd42v5",
+            image_url: "https://i.imgur.com/YHd42v5.jpeg",
             products:[
                 Product(
                     name: "Bear Appearance",

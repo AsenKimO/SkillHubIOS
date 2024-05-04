@@ -57,10 +57,7 @@ class ContactPageViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         
         scrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(50)
-            make.right.equalToSuperview().offset(-50)
+            make.edges.equalToSuperview()
         }
         scrollView.contentLayoutGuide.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -70,10 +67,11 @@ class ContactPageViewController: UIViewController {
         
         scrollContentView.backgroundColor = .white
         scrollContentView.snp.makeConstraints { make in
-//            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
-//            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
-//            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
-            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.left.equalTo(scrollView.contentLayoutGuide.snp.left).offset(36)
+            make.right.equalTo(scrollView.contentLayoutGuide.snp.right).offset(-36)
+            make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
+//            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
         }
     }
     
@@ -87,18 +85,18 @@ class ContactPageViewController: UIViewController {
     }
     
     private func setupCoverImage() {
-    
         coverImage.sd_setImage(with: URL(string: user.image_url))
-        view.addSubview(coverImage)
+        scrollContentView.addSubview(coverImage)
         coverImage.backgroundColor = .brown
         
         coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
+        coverImage.clipsToBounds = true
         
         coverImage.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(0)
-            make.left.equalToSuperview().offset(36)
-            make.right.equalToSuperview().offset(-36)
+            make.top.equalToSuperview().offset(30)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(coverImage.snp.width)
         }
         
@@ -109,11 +107,12 @@ class ContactPageViewController: UIViewController {
         companyLabel.font = .systemFont(ofSize: 16, weight: .regular)
         companyLabel.textColor = .brown // CHANGE
         
-        view.addSubview(companyLabel)
+        scrollContentView.addSubview(companyLabel)
         
         companyLabel.snp.makeConstraints { make in
-            make.top.equalTo(coverImage.snp.bottom).offset(30) //30
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(53)
+            make.top.equalTo(coverImage.snp.bottom).offset(20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
     }
     private func setupTitleLabel() {
@@ -125,8 +124,9 @@ class ContactPageViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyLabel.snp.bottom).offset(0)
-            make.left.equalToSuperview().offset(53)
+            make.top.equalTo(companyLabel.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
         }
     }
     
@@ -139,8 +139,7 @@ class ContactPageViewController: UIViewController {
         
         messageTitle.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.centerX.equalTo(view.center.x)
-            
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -155,9 +154,9 @@ class ContactPageViewController: UIViewController {
         
         messageInputTextView.snp.makeConstraints { make in
             make.top.equalTo(messageTitle.snp.bottom).offset(10)
-            make.centerX.equalTo(view.center.x)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(150)
-            make.width.equalTo(300)
         }
         
     }
@@ -179,9 +178,9 @@ class ContactPageViewController: UIViewController {
         
         messageButton.snp.makeConstraints { make in
             make.top.equalTo(messageInputTextView.snp.bottom).offset(5)
-            make.centerX.equalTo(view.center.x)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(44)
-            make.width.equalTo(300)
         }
         
     }
@@ -196,7 +195,7 @@ class ContactPageViewController: UIViewController {
         
         contactTitle.snp.makeConstraints { make in
             make.top.equalTo(messageButton.snp.bottom).offset(55)
-            make.centerX.equalTo(view.center.x)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -210,7 +209,7 @@ class ContactPageViewController: UIViewController {
         
         contactEmail.snp.makeConstraints { make in
             make.top.equalTo(contactTitle.snp.bottom).offset(5)
-            make.centerX.equalTo(view.center.x)
+            make.centerX.equalToSuperview()
         }
         
     }
@@ -225,8 +224,8 @@ class ContactPageViewController: UIViewController {
         
         contactPhone.snp.makeConstraints { make in
             make.top.equalTo(contactEmail.snp.bottom).offset(3)
-            make.left.equalToSuperview().offset(153)
-            
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
     }

@@ -13,7 +13,7 @@ import WebKit
 class ProductPageViewController: UIViewController {
     
     // MARK: - Properties (view)
-    private var coverImage = UIImageView()
+    private var coverImage = UIImageView(image: UIImage(systemName: "figure.walk"))
     private var companyLabel = UILabel()
     private var titleLabel = UILabel()
     private var websiteButton = UIButton()
@@ -24,8 +24,7 @@ class ProductPageViewController: UIViewController {
     
     private var scrollView = UIScrollView()
     private var scrollContentView = UIView()
-//    private var productCollView = UICollectionView()
-    private var productCollView = UIView()
+    private var productCollView: UICollectionView!
     
     // MARK: - Properties (data)
     private let user: User
@@ -46,7 +45,7 @@ class ProductPageViewController: UIViewController {
         setupProducts()
         setupWebButton()
         setupContactButton()
-        setupWebView()
+//        setupWebView()
     }
     
     // MARK: - viewDidLayoutSubviews
@@ -86,7 +85,7 @@ class ProductPageViewController: UIViewController {
 //            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
 //            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
 //            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
-//            make.height.equalTo(1000)
+//            make.height.equalTo(2500)
             make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
         }
     }
@@ -99,6 +98,7 @@ class ProductPageViewController: UIViewController {
         
         coverImage.layer.cornerRadius = 15
         coverImage.contentMode = .scaleAspectFill
+        coverImage.clipsToBounds = true
         
         coverImage.snp.makeConstraints { make in
             make.top.equalTo(scrollContentView.safeAreaLayoutGuide.snp.top).offset(30)
@@ -142,19 +142,18 @@ class ProductPageViewController: UIViewController {
     }
     
     private func setupProducts() {
-//        let layout = UICollectionViewFlowLayout()
-//        productCollView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 30, height: 1000), collectionViewLayout: layout)
-//        layout.scrollDirection = .vertical
-//        layout.minimumLineSpacing = 20
-//
-//        scrollContentView.addSubview(productCollView)
-//
-//        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
-        
-        productCollView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1000))
-        productCollView.backgroundColor = .red
-        
+        let layout = UICollectionViewFlowLayout()
+        productCollView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.minimumLineSpacing = 20
+
         scrollContentView.addSubview(productCollView)
+
+        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
+        productCollView.dataSource = self
+        
+        productCollView.backgroundColor = .cyan
+        productCollView.isScrollEnabled = true
+        productCollView.alwaysBounceVertical = true
         
         productCollView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(55)
@@ -175,7 +174,7 @@ class ProductPageViewController: UIViewController {
         websiteButton.setTitleColor(.white, for: .selected)
         websiteButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         
-        websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+//        websiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
         
         websiteButton.clipsToBounds = true
         websiteButton.isEnabled = true
@@ -216,29 +215,29 @@ class ProductPageViewController: UIViewController {
     }
     
     
-    private func setupWebView(){
-        view.addSubview(webView)
-        
-        let preferences = WKWebpagePreferences()
-        preferences.allowsContentJavaScript = true
-
-        let configuration = WKWebViewConfiguration()
-        configuration.defaultWebpagePreferences = preferences
-
-        webView = WKWebView(frame: view.bounds, configuration: configuration)
-        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        webView.allowsBackForwardNavigationGestures = true
-        
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
-        
-        guard let url = URL(string: user.website) else { print("Error in ProductPageViewController: Invalid URL!"); return }
-        webView.load(URLRequest(url: url))
-    }
-    
-    @objc private func openWebsite(){
-        
-    }
+//    private func setupWebView(){
+//        view.addSubview(webView)
+//
+//        let preferences = WKWebpagePreferences()
+//        preferences.allowsContentJavaScript = true
+//
+//        let configuration = WKWebViewConfiguration()
+//        configuration.defaultWebpagePreferences = preferences
+//
+//        webView = WKWebView(frame: view.bounds, configuration: configuration)
+//        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        webView.allowsBackForwardNavigationGestures = true
+//
+//        webView.uiDelegate = self
+//        webView.navigationDelegate = self
+//
+//        guard let url = URL(string: user.website) else { print("Error in ProductPageViewController: Invalid URL!"); return }
+//        webView.load(URLRequest(url: url))
+//    }
+//
+//    @objc private func openWebsite(){
+//
+//    }
 
     @objc private func pushContactVC(){
         let contactVC = ContactPageViewController(user: user)
@@ -247,24 +246,53 @@ class ProductPageViewController: UIViewController {
 
 }
 
-extension ProductPageViewController: WKNavigationDelegate{}
+//extension ProductPageViewController: WKNavigationDelegate{}
+//
+//extension ProductPageViewController: WKUIDelegate {
+//    //MARK: Creating new webView for popup
+//    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+//        popupWebView = WKWebView(frame: view.bounds, configuration: configuration)
+//        popupWebView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        popupWebView.navigationDelegate = self
+//        popupWebView.uiDelegate = self
+//        view.addSubview(popupWebView)
+//        return popupWebView
+//    }
+//
+//    //MARK: To close popup
+//    func webViewDidClose(_ webView: WKWebView) {
+//        if webView == popupWebView {
+//            popupWebView.removeFromSuperview()
+//            popupWebView = WKWebView()
+//        }
+//    }
+//}
 
-extension ProductPageViewController: WKUIDelegate {
-    //MARK: Creating new webView for popup
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        popupWebView = WKWebView(frame: view.bounds, configuration: configuration)
-        popupWebView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        popupWebView.navigationDelegate = self
-        popupWebView.uiDelegate = self
-        view.addSubview(popupWebView)
-        return popupWebView
+
+extension ProductPageViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    //MARK: To close popup
-    func webViewDidClose(_ webView: WKWebView) {
-        if webView == popupWebView {
-            popupWebView.removeFromSuperview()
-            popupWebView = WKWebView()
-        }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return user.products.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.reuse, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+        
+        let prod = user.products[indexPath.item]
+        cell.configure(with: prod)
+        return cell
+    }
+    
+
+}
+
+extension ProductPageViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: scrollContentView.frame.width, height: 300)
     }
 }
+

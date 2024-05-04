@@ -44,7 +44,7 @@ class HomePageViewController: UIViewController {
     private func setupNavBar(){
         navigationItem.title = "skillHub"
         let appearance = UINavigationBarAppearance()
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 50)!]
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 35)!]
         appearance.titleTextAttributes = attributes
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .brown
@@ -53,7 +53,7 @@ class HomePageViewController: UIViewController {
         backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white]
         appearance.backButtonAppearance = backItemAppearance
          
-        let image = UIImage(systemName: "chevron.backward")?.withTintColor(.white, renderingMode: .alwaysOriginal) // fix indicator color
+        let image = UIImage(systemName: "chevron.backward")?.withTintColor(.white, renderingMode: .alwaysOriginal)
         appearance.setBackIndicatorImage(image, transitionMaskImage: image)
         
         navigationController?.navigationBar.standardAppearance = appearance
@@ -117,7 +117,6 @@ class HomePageViewController: UIViewController {
         collectionView.backgroundColor = .cyan
         collectionView.isScrollEnabled = true
         collectionView.alwaysBounceVertical = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(pillCollView.snp.bottom).offset(36)

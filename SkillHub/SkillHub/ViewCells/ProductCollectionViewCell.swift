@@ -14,7 +14,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     var descriptLabel = UILabel()
     
     // MARK: - Properties (data)
-    //    private let product: Product
     static let reuse: String = "ProductCollectionViewCellReuse"
     
     // MARK: - init
@@ -45,8 +44,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(0)
-            make.left.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(52)
+//            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top)
+//            make.left.equalTo(contentView.safeAreaLayoutGuide.snp.left)
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalTo(25)
         }
     }
         
@@ -57,8 +59,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(priceLabel)
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(52)
-            make.left.equalTo(nameLabel.snp.right).offset(52)
+            make.top.equalTo(contentView.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(nameLabel.snp.right)
+            make.right.equalTo(contentView.safeAreaLayoutGuide.snp.right)
+            make.height.equalTo(nameLabel.snp.height)
+            make.width.equalTo(40)
         }
     }
     
@@ -70,7 +75,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         descriptLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(5)
-            make.left.equalTo(nameLabel.snp.right).offset(52)
+            make.left.equalTo(contentView.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(contentView.safeAreaLayoutGuide.snp.right)
+            make.bottom.equalTo(contentView.safeAreaLayoutGuide.snp.bottom)
         }
         
     }
