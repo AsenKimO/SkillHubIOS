@@ -30,7 +30,6 @@ class ProductPageViewController: UIViewController {
     private var cbrown = UIColor(red: 86/255, green: 61/255, blue: 45/255, alpha: 1)
     private var cpink = UIColor(red: 205/255, green: 137/255, blue: 135/255, alpha: 1)
     private var offWhite = UIColor(red: 247/255, green: 243/255, blue: 227/255, alpha: 1)
-    private var cslate = UIColor(red: 109/255, green: 138/255, blue: 150/255, alpha: 1)
     
     // MARK: - Properties (data)
     private let user: User
@@ -51,6 +50,7 @@ class ProductPageViewController: UIViewController {
         setupProducts()
         setupWebButton()
         setupContactButton()
+        
 //        setupWebView()
     }
     
@@ -89,11 +89,11 @@ class ProductPageViewController: UIViewController {
         
         scrollContentView.backgroundColor = offWhite
         scrollContentView.snp.makeConstraints { make in
-//            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
-//            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
-//            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
+            make.right.equalTo(scrollView.contentLayoutGuide.snp.right)
 //            make.height.equalTo(2500)
-            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
+//            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
         }
     }
     
@@ -126,7 +126,7 @@ class ProductPageViewController: UIViewController {
     private func setupCompanyLabel() {
         companyLabel.text = user.name.lowercased()
         companyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-        companyLabel.textColor = cslate // CHANGE
+        companyLabel.textColor = cpink // CHANGE
         
         scrollContentView.addSubview(companyLabel)
         
@@ -161,21 +161,25 @@ class ProductPageViewController: UIViewController {
         scrollContentView.addSubview(productTableView)
 
         productTableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.reuse)
+        productTableView.delegate = self
         productTableView.dataSource = self
         
         productTableView.backgroundColor = .cyan
         
-        productTableView.rowHeight = 120
+        productTableView.rowHeight = 120.0
         
+        productTableView.isUserInteractionEnabled = false
         productTableView.isScrollEnabled = false
+        productTableView.insetsContentViewsToSafeArea = true
+        productTableView.isHidden = false
         
         productTableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-//            make.height.equalTo(CGFloat productTableView.rowHeight * user.products.count)
+            make.height.equalTo(Float(productTableView.rowHeight) * Float(user.products.count))
         }
-    
+        print(productTableView.visibleCells.count)
     }
     
     private func setupWebButton() {
@@ -283,6 +287,8 @@ class ProductPageViewController: UIViewController {
 //    }
 //}
 
+extension ProductPageViewController: UITableViewDelegate {}
+
 extension ProductPageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -296,10 +302,9 @@ extension ProductPageViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuse, for: indexPath) as? ProductTableViewCell else { return UITableViewCell() }
         
         let prod = user.products[indexPath.item]
-        cell.configure(with: prod)
+        cell.configure(product: prod)
+        print("returns!")
         return cell
     }
-    
-    
 }
 

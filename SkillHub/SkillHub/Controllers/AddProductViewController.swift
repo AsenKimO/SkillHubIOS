@@ -23,7 +23,7 @@ class AddProductViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = .white
+        view.backgroundColor = offwhite
         setupNavBar()
         setupScrollView()
         setupTitle()
@@ -100,7 +100,7 @@ class AddProductViewController: UIViewController {
         
         scrollView.addSubview(scrollContentView)
         
-        scrollContentView.backgroundColor = .white
+        scrollContentView.backgroundColor = offwhite
         scrollContentView.snp.makeConstraints { make in
 //            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
 //            make.left.equalTo(scrollView.contentLayoutGuide.snp.left)
@@ -136,7 +136,7 @@ class AddProductViewController: UIViewController {
 //        collView.delegate = self
 //        collView.dataSource = self
 
-        collView.backgroundColor = .white
+        collView.backgroundColor = offwhite
         collView.isScrollEnabled = true
         collView.alwaysBounceVertical = true
         collView.translatesAutoresizingMaskIntoConstraints = false

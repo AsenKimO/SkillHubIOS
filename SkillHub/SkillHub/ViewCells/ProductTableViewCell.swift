@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProductTableViewCell: UITableViewCell {
     // MARK: - Properties (view)
@@ -33,6 +34,7 @@ class ProductTableViewCell: UITableViewCell {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
+            make.height.equalTo(30)
         }
     }
     
@@ -46,7 +48,7 @@ class ProductTableViewCell: UITableViewCell {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.width.equalTo(90)
+//            make.width.equalTo(90)
         }
     }
         
@@ -58,7 +60,7 @@ class ProductTableViewCell: UITableViewCell {
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalTo(nameLabel.snp.right)
+//            make.left.equalTo(nameLabel.snp.right)
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
             make.width.equalTo(40)
@@ -80,9 +82,9 @@ class ProductTableViewCell: UITableViewCell {
         
     }
     
-    func configure(with product: Product){
+    func configure(product: Product){
         nameLabel.text = product.name
-        priceLabel.text = String(product.price)
+        priceLabel.text = "$" + String(product.price)
         descriptLabel.text = product.description
     }
 
