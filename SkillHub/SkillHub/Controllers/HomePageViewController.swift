@@ -107,6 +107,7 @@ class HomePageViewController: UIViewController {
         
         view.addSubview(collectionView)
         
+        collectionView.register(FeatUserCollectionViewCell.self, forCellWithReuseIdentifier: FeatUserCollectionViewCell.reuse)
         collectionView.register(UserCollectionViewCell.self, forCellWithReuseIdentifier: UserCollectionViewCell.reuse)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -161,6 +162,8 @@ extension HomePageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let user = users[indexPath.item]
+        
         if collectionView == pillCollView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPillCollectionViewCell.reuse, for: indexPath) as? FilterPillCollectionViewCell else { return UICollectionViewCell() }
             
@@ -169,12 +172,16 @@ extension HomePageViewController: UICollectionViewDataSource {
             return cell
         }
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.reuse, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
+        if indexPath.item == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeatUserCollectionViewCell.reuse, for: indexPath) as? FeatUserCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: user)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.reuse, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: user)
+            return cell
+        }
         
-        let user = users[indexPath.item]
-//        let user = User(name: "name", title: "title", email: "email", website: "website", image_url: "", products: [])
-        cell.configure(with: user)
-        return cell
     }
     
 

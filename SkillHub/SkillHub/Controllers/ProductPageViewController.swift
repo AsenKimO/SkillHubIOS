@@ -24,7 +24,7 @@ class ProductPageViewController: UIViewController {
     
     private var scrollView = UIScrollView()
     private var scrollContentView = UIView()
-    private var productCollView: UICollectionView!
+    private var productTableView: UITableView!
     
     // MARK: - Properties (data)
     private let user: User
@@ -142,23 +142,24 @@ class ProductPageViewController: UIViewController {
     }
     
     private func setupProducts() {
-        let layout = UICollectionViewFlowLayout()
-        productCollView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        layout.minimumLineSpacing = 20
+        productTableView = UITableView(frame: .zero, style: .plain)
 
-        scrollContentView.addSubview(productCollView)
+        scrollContentView.addSubview(productTableView)
 
-        productCollView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.reuse)
-        productCollView.dataSource = self
+        productTableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.reuse)
+        productTableView.dataSource = self
         
-        productCollView.backgroundColor = .cyan
-        productCollView.isScrollEnabled = true
-        productCollView.alwaysBounceVertical = true
+        productTableView.backgroundColor = .cyan
         
-        productCollView.snp.makeConstraints { make in
+        productTableView.rowHeight = 120
+        
+        productTableView.isScrollEnabled = false
+        
+        productTableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(55)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
+//            make.height.equalTo(CGFloat productTableView.rowHeight * user.products.count)
         }
     
     }
@@ -180,10 +181,10 @@ class ProductPageViewController: UIViewController {
         websiteButton.isEnabled = true
         
         websiteButton.snp.makeConstraints { make in
-            make.top.equalTo(productCollView.snp.bottom).offset(30)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(productTableView.snp.bottom).offset(30)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(44)
-            make.width.equalTo(310)
         }
         
     }
@@ -206,9 +207,9 @@ class ProductPageViewController: UIViewController {
         
         contactButton.snp.makeConstraints { make in
             make.top.equalTo(websiteButton.snp.bottom).offset(12)
-            make.centerX.equalToSuperview()
             make.height.equalTo(44)
-            make.width.equalTo(310)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
@@ -268,31 +269,23 @@ class ProductPageViewController: UIViewController {
 //    }
 //}
 
-
-extension ProductPageViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension ProductPageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return user.products.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.reuse, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuse, for: indexPath) as? ProductTableViewCell else { return UITableViewCell() }
         
         let prod = user.products[indexPath.item]
         cell.configure(with: prod)
         return cell
     }
     
-
-}
-
-extension ProductPageViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: scrollContentView.frame.width, height: 300)
-    }
+    
 }
 
