@@ -1,2 +1,2 @@
 # SkillHubIOS
- IOS repo for Cornell AppDev Hackathon SP24
+ iOS repo for Cornell AppDev Hackathon SP24
