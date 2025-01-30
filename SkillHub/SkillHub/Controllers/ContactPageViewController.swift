@@ -193,7 +193,7 @@ class ContactPageViewController: UIViewController {
         messageButton.setTitleColor(offWhite, for: .selected)
         messageButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         
-        messageButton.isUserInteractionEnabled = false
+        messageButton.isUserInteractionEnabled = true
         messageButton.clipsToBounds = true
         messageButton.isEnabled = true
         

@@ -10,88 +10,81 @@ import SnapKit
 
 class ProductTableViewCell: UITableViewCell {
     // MARK: - Properties (view)
-    var namePriceView = UIView()
-    var nameLabel = UILabel()
-    var priceLabel = UILabel()
-    var descriptLabel = UILabel()
+    private let namePriceView = UIView()
+    private let nameLabel = UILabel()
+    private let priceLabel = UILabel()
+    private let descriptLabel = UILabel()
     
     // MARK: - Properties (data)
-    static let reuse: String = "ProductTableViewCellReuse"
+    static let reuse = "ProductTableViewCellReuse"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupUI() {
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = true
+
         setupNamePriceLabels()
         setUpDescriptLabel()
     }
     
     private func setupNamePriceLabels() {
-        setupNameLabel()
-        setupPriceLabel()
         contentView.addSubview(namePriceView)
         
-        namePriceView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(30)
-        }
-    }
-    
-    private func setupNameLabel() {
         nameLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        nameLabel.textColor = .black // CHANGE
+        nameLabel.textColor = .black
         
-        namePriceView.addSubview(nameLabel)
-        
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.bottom.equalToSuperview()
-//            make.width.equalTo(90)
-        }
-    }
-        
-    private func setupPriceLabel() {
         priceLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        priceLabel.textColor = .black // CHANGE
-        
+        priceLabel.textColor = .black
+        priceLabel.textAlignment = .right
+        priceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        namePriceView.addSubview(nameLabel)
         namePriceView.addSubview(priceLabel)
         
+        namePriceView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(12)
+            make.right.equalToSuperview().offset(-12)
+            make.height.equalTo(24)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.left.top.bottom.right.equalToSuperview()
+        }
+        
         priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-//            make.left.equalTo(nameLabel.snp.right)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalTo(40)
+            make.right.top.bottom.right.equalToSuperview()
         }
     }
     
     private func setUpDescriptLabel() {
-        descriptLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        descriptLabel.textColor = .gray // CHANGE
-        
+        descriptLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        descriptLabel.textColor = .gray
+        descriptLabel.numberOfLines = 0 // Allows multi-line text
+
         contentView.addSubview(descriptLabel)
         
         descriptLabel.snp.makeConstraints { make in
             make.top.equalTo(namePriceView.snp.bottom).offset(5)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(12)
+            make.right.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-10)
         }
-        
     }
     
     func configure(product: Product){
         nameLabel.text = product.name
-        priceLabel.text = "$" + String(product.price)
+        priceLabel.text = String(format: "$%.2f", product.price)
         descriptLabel.text = product.description
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
+

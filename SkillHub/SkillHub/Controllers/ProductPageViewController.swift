@@ -60,6 +60,16 @@ class ProductPageViewController: UIViewController {
         // do any subview customizations AFTER autolayout
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(String(describing: productTableView.frame.width))
+        print(productTableView.frame.height)
+        DispatchQueue.main.async {
+            self.productTableView.reloadData()
+            self.productTableView.layoutIfNeeded()
+        }
+    }
+    
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
@@ -126,33 +136,37 @@ class ProductPageViewController: UIViewController {
     private func setupCompanyLabel() {
         companyLabel.text = user.name.lowercased()
         companyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-        companyLabel.textColor = cpink // CHANGE
+        companyLabel.textColor = cpink
+        companyLabel.numberOfLines = 0
+        companyLabel.lineBreakMode = .byWordWrapping
         
         scrollContentView.addSubview(companyLabel)
         
         companyLabel.snp.makeConstraints { make in
-            make.top.equalTo(coverImage.snp.bottom).offset(20) //30
+            make.top.equalTo(coverImage.snp.bottom).offset(20)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(30)
         }
         
+        companyLabel.setContentHuggingPriority(.required, for: .vertical)
     }
-    
+
     private func setupTitleLabel() {
         titleLabel.text = user.title.uppercased()
         titleLabel.font = .systemFont(ofSize: 28, weight: .heavy)
-        titleLabel.textColor = cblack // CHANGE
-        
+        titleLabel.textColor = cblack
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
+
         scrollContentView.addSubview(titleLabel)
-        
+
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(companyLabel.snp.bottom).offset(-10)
+            make.top.equalTo(companyLabel.snp.bottom).offset(5)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(44)
         }
         
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
     }
     
     private func setupProducts() {
@@ -166,7 +180,7 @@ class ProductPageViewController: UIViewController {
         
         productTableView.backgroundColor = .cyan
         
-        productTableView.rowHeight = 120.0
+        productTableView.rowHeight = 130.0
         
         productTableView.isUserInteractionEnabled = false
         productTableView.isScrollEnabled = false
@@ -179,7 +193,10 @@ class ProductPageViewController: UIViewController {
             make.right.equalToSuperview()
             make.height.equalTo(Float(productTableView.rowHeight) * Float(user.products.count))
         }
-        print(productTableView.visibleCells.count)
+//        print(productTableView.visibleCells.count)
+//        print("TableView: \(String(describing: productTableView))")
+//        print(productTableView.frame)
+
     }
     
     private func setupWebButton() {
@@ -299,11 +316,12 @@ extension ProductPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("Rendering cell for row: \(indexPath.row)")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.reuse, for: indexPath) as? ProductTableViewCell else { return UITableViewCell() }
         
         let prod = user.products[indexPath.item]
         cell.configure(product: prod)
-        print("returns!")
+        print(cell.frame)
         return cell
     }
 }
